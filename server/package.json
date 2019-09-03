@@ -1,0 +1,23 @@
+{
+  "name": "recipedb",
+  "version": "1.0.0",
+  "description": "### Project Setup",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stupop010/recipeDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stupop010/recipeDB/issues"
+  },
+  "homepage": "https://github.com/stupop010/recipeDB#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.2"
+  }
+}
