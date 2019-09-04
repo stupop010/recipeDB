@@ -1,8 +1,61 @@
 const express = require("express");
+const { check, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const keys = require("../config/keys");
+
 const router = express.Router();
 
-router.get("/", (res, req) => {
-  console.log("hello");
-});
+const User = require("../models/user");
+
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
+router.post(
+  "/",
+  [
+    check("email", "Must be a valid email").isEmail(),
+    check("password").exists()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    const { email, password } = req.body;
+
+    try {
+      // Find user
+      let user = await User.findOne({
+        where: {
+          email
+        }
+      });
+
+      if (!user) return res.json({ errors: [{ msg: "Invalid Credentials" }] });
+
+      // Check password for a match
+      const match = await bcrypt.compare(password, user.dataValues.password);
+
+      if (!match) return res.json({ errors: [{ msg: "Invalid Credentials" }] });
+
+      // JWT sign and send as response
+      const payload = {
+        user: {
+          id: user.dataValues.id
+        }
+      };
+      jwt.sign(payload, keys.jwt, { expiresIn: 360000 }, (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 module.exports = router;

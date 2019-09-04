@@ -38,7 +38,7 @@ router.post(
           email: email
         }
       });
-      if (user) return res.json({ message: "user allready" });
+      if (user) return res.json({ errors: [{ msg: "User already exists" }] });
 
       // Hash the password
       const salt = await bcrypt.genSalt(10);
@@ -63,7 +63,7 @@ router.post(
       });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ errors: "Server Error" });
+      res.status(500).send("Server Error");
     }
   }
 );
