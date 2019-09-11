@@ -18,10 +18,12 @@
   "homepage": "https://github.com/stupop010/recipeDB#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
+    "node-fetch": "^2.6.0",
     "nodemon": "^1.19.2",
     "pg": "^7.12.1",
     "sequelize": "^5.18.1"
