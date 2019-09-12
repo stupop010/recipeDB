@@ -10,7 +10,11 @@ router.get("/", async (req, res) => {
     `https://api.edamam.com/search?q=${query}&app_id=${keys.app_id}&app_key=${keys.app_key}`
   )
     .then(results => results.json())
-    .then(json => res.json(json.hits));
+    .then(json => {
+      const results = [];
+      json.hits.map(item => results.push(item.recipe));
+      res.json(results);
+    });
 });
 
 module.exports = router;
