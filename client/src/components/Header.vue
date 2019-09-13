@@ -47,6 +47,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   padding: 1em 0;
+  box-shadow: 0 1px rgba(107, 106, 106, 0.8);
 }
 form {
   height: 38px;
@@ -87,5 +88,10 @@ form {
 }
 .clear-btn {
   border: none;
+}
+.clear-btn:active {
+  background: rgba(107, 106, 106, 0.8);
+  color: white;
+  outline: none;
 }
 </style>

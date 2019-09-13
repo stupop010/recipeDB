@@ -31,4 +31,12 @@ body {
 * {
   box-sizing: border-box;
 }
+li {
+  list-style: none;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
 </style>

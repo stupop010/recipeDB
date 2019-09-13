@@ -10,6 +10,7 @@ const getters = {
 
 const actions = {
   async fetchRecipes({ commit }, data) {
+    console.log("hello");
     // eslint-disable-next-line
     const response = await axios.get("/api/data", {
       params: {
