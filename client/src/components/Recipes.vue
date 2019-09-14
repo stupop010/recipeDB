@@ -29,6 +29,11 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Recipes",
+  props: {
+    search: {
+      type: String
+    }
+  },
   data() {
     return {
       dataTo: 20
@@ -48,7 +53,12 @@ export default {
           document.documentElement.offsetHeight;
 
         if (bottomOfWindow) {
-          this.fetchRecipes(); // replace it with your code
+          this.dataTo += 20;
+          const data = {
+            search: this.search,
+            searchTo: this.dataTo
+          };
+          this.fetchRecipes(data);
         }
       };
     }

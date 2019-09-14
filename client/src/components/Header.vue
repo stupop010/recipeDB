@@ -27,7 +27,9 @@ export default {
   methods: {
     ...mapActions(["fetchRecipes"]),
     onSubmit() {
-      this.fetchRecipes(this.search);
+      this.$emit("inputSearch", this.search);
+      const data = { search: this.search, searchTo: 20 };
+      this.fetchRecipes(data);
     },
     clearData() {
       this.search = "";

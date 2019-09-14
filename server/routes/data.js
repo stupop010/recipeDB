@@ -5,9 +5,9 @@ const fetch = require("node-fetch");
 const keys = require("../config/keys");
 
 router.get("/", async (req, res) => {
-  const query = req.query.data;
+  const { search, searchTo } = req.query;
   fetch(
-    `https://api.edamam.com/search?q=${query}&app_id=${keys.app_id}&app_key=${keys.app_key}`
+    `https://api.edamam.com/search?q=${search}&app_id=${keys.app_id}&app_key=${keys.app_key}&from=0&to=${searchTo}`
   )
     .then(results => results.json())
     .then(json => {

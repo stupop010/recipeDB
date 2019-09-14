@@ -9,20 +9,17 @@ const getters = {
 };
 
 const actions = {
-  async fetchRecipes({ commit }, data) {
-    console.log("hello");
+  async fetchRecipes({ commit }, { search, searchTo }) {
     // eslint-disable-next-line
     const response = await axios.get("/api/data", {
       params: {
-        data: data
+        search,
+        searchTo
       }
     });
     commit("setRecipes", response.data);
-    // eslint-disable-next-line
   }
 };
-
-// (state.recipes = recipes.recipes)
 
 const mutations = {
   setRecipes: (state, recipes) => (state.recipes = recipes)
