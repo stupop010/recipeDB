@@ -1,28 +1,36 @@
 import axios from "axios";
 
 const state = {
-  recipes: []
+  recipes: [],
+  loading: false
 };
 
 const getters = {
-  allRecipes: state => state.recipes
+  allRecipes: state => state.recipes,
+  isLoading: state => state.loading
 };
 
 const actions = {
   async fetchRecipes({ commit }, { search, searchTo }) {
-    // eslint-disable-next-line
-    const response = await axios.get("/api/data", {
-      params: {
-        search,
-        searchTo
-      }
-    });
-    commit("setRecipes", response.data);
+    try {
+      commit("setLoading", true);
+      const response = await axios.get("/api/data", {
+        params: {
+          search,
+          searchTo
+        }
+      });
+      commit("setRecipes", response.data);
+      commit("setLoading", false);
+    } catch (err) {
+      commit("setLoading", false);
+    }
   }
 };
 
 const mutations = {
-  setRecipes: (state, recipes) => (state.recipes = recipes)
+  setRecipes: (state, recipes) => (state.recipes = recipes),
+  setLoading: (state, loading) => (state.loading = loading)
 };
 
 export default {
@@ -31,5 +39,3 @@ export default {
   actions,
   mutations
 };
-
-// (state.recipes = recipes)

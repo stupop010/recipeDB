@@ -1,5 +1,6 @@
 <template>
   <ul>
+    <Loading v-if="isLoading" />
     <div class="recipe-container">
       <li class="recipe" v-for="recipe in allRecipes" :key="recipe.calories">
         <a href="#!">
@@ -20,7 +21,6 @@
           <a v-bind:href="recipe.url">{{recipe.source}}</a>
         </div>
       </li>
-      <Loading />
     </div>
   </ul>
 </template>
@@ -41,8 +41,7 @@ export default {
   },
   data() {
     return {
-      dataTo: 20,
-      loading: false
+      dataTo: 20
     };
   },
   methods: {
@@ -69,7 +68,7 @@ export default {
       };
     }
   },
-  computed: mapGetters(["allRecipes"]),
+  computed: mapGetters(["allRecipes", "isLoading"]),
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },

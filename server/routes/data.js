@@ -14,6 +14,9 @@ router.get("/", async (req, res) => {
       const results = [];
       json.hits.map(item => results.push(item.recipe));
       res.json(results);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Server Error" });
     });
 });
 
