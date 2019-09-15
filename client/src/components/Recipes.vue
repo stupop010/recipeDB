@@ -20,15 +20,20 @@
           <a v-bind:href="recipe.url">{{recipe.source}}</a>
         </div>
       </li>
+      <Loading />
     </div>
   </ul>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Loading from "./Loading";
 
 export default {
   name: "Recipes",
+  components: {
+    Loading
+  },
   props: {
     search: {
       type: String
@@ -36,7 +41,8 @@ export default {
   },
   data() {
     return {
-      dataTo: 20
+      dataTo: 20,
+      loading: false
     };
   },
   methods: {
