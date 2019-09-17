@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Header @inputSearch="updateSearch" />
-    <Recipes :search="headerSearch" />
+    <!-- <Header @inputSearch="updateSearch" />
+    <Recipes :search="headerSearch" />-->
+    <router-view></router-view>
   </div>
 </template>
 

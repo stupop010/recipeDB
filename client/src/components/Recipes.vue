@@ -3,7 +3,7 @@
     <Loading v-if="isLoading" />
     <div class="recipe-container">
       <li class="recipe" v-for="recipe in allRecipes" :key="recipe.calories">
-        <a href="#!">
+        <a href="#!" v-on:click="onClick(recipe)">
           <div class="recipe-image" v-bind:style="{ backgroundImage: `url('${recipe.image}')` }"></div>
           <p>{{recipe.label}}</p>
         </a>
@@ -45,8 +45,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchRecipes"]),
-    handleScroll(e) {
+    ...mapActions(["fetchRecipes", "passOnRecipeData"]),
+    handleScroll() {
       window.onscroll = () => {
         let bottomOfWindow =
           Math.max(
@@ -66,6 +66,9 @@ export default {
           this.fetchRecipes(data);
         }
       };
+    },
+    onClick(recipe) {
+      this.passOnRecipeData(recipe);
     }
   },
   computed: mapGetters(["allRecipes", "isLoading"]),
