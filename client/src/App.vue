@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <!-- <Header @inputSearch="updateSearch" />
-    <Recipes :search="headerSearch" />-->
+    <Header />
     <router-view></router-view>
   </div>
 </template>
@@ -14,16 +13,6 @@ export default {
   components: {
     Header,
     Recipes
-  },
-  data() {
-    return {
-      headerSearch: ""
-    };
-  },
-  methods: {
-    updateSearch(variable) {
-      this.headerSearch = variable;
-    }
   }
 };
 </script>

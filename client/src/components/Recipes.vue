@@ -3,10 +3,10 @@
     <Loading v-if="isLoading" />
     <div class="recipe-container">
       <li class="recipe" v-for="recipe in allRecipes" :key="recipe.calories">
-        <a href="#!" v-on:click="onClick(recipe)">
-          <div class="recipe-image" v-bind:style="{ backgroundImage: `url('${recipe.image}')` }"></div>
+        <router-link :to="{name: 'recipe'}">
+          <div class="recipe-image" :style="{ backgroundImage: `url('${recipe.image}')` }"></div>
           <p>{{recipe.label}}</p>
-        </a>
+        </router-link>
         <div class="data">
           <a>
             <span class="number">{{Math.floor(recipe.calories / recipe.yield)}}</span>
@@ -18,7 +18,7 @@
           </a>
         </div>
         <div class="source-link">
-          <a v-bind:href="recipe.url">{{recipe.source}}</a>
+          <a :href="recipe.url">{{recipe.source}}</a>
         </div>
       </li>
     </div>
@@ -33,11 +33,6 @@ export default {
   name: "Recipes",
   components: {
     Loading
-  },
-  props: {
-    search: {
-      type: String
-    }
   },
   data() {
     return {
@@ -60,7 +55,7 @@ export default {
         if (bottomOfWindow) {
           this.dataTo += 20;
           const data = {
-            search: this.search,
+            search: this.$route.params.id,
             searchTo: this.dataTo
           };
           this.fetchRecipes(data);
@@ -143,3 +138,7 @@ export default {
 </style>
 
 
+
+
+
+// :to="{ name:'single-recipe', params:{ tag: recipe.label}}"

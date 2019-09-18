@@ -27,9 +27,10 @@ export default {
   methods: {
     ...mapActions(["fetchRecipes"]),
     onSubmit() {
-      this.$emit("inputSearch", this.search);
       const data = { search: this.search, searchTo: 20 };
+      console.log(data);
       this.fetchRecipes(data);
+      this.$router.push({ path: `/search/${this.search}` });
     },
     clearData() {
       this.search = "";
