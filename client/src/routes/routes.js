@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Recipe from "../components/Recipes";
+import Recipe from "../components/Recipe";
 
 Vue.use(Router);
 
@@ -18,14 +18,10 @@ const router = new Router({
       component: () => import("../components/Recipes.vue")
     },
     {
-      path: "/search/name/data",
-      name: "single-recipe",
-      component: Recipe
-    },
-    {
-      path: "/search/name",
+      path: "/recipe/:name",
       name: "recipe",
-      component: Recipe
+      component: Recipe,
+      props: route => ({ ...route.params })
     }
   ]
 });

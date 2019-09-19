@@ -9,12 +9,17 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Recipe",
+  data() {
+    return {
+      recipe: this.$route.params.recipe
+    };
+  },
   methods: {
     onclick() {
       console.log(this);
+      console.log(this.$route);
     }
-  },
-  computed: mapGetters(["singleRecipe"])
+  }
 };
 </script>
 

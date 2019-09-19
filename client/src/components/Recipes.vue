@@ -3,7 +3,10 @@
     <Loading v-if="isLoading" />
     <div class="recipe-container">
       <li class="recipe" v-for="recipe in allRecipes" :key="recipe.calories">
-        <router-link :to="{name: 'recipe'}">
+        <router-link
+          v-on:click="onClick(recipe)"
+          :to="{name: 'recipe', params: {name: recipe.label,recipe}}"
+        >
           <div class="recipe-image" :style="{ backgroundImage: `url('${recipe.image}')` }"></div>
           <p>{{recipe.label}}</p>
         </router-link>
@@ -40,7 +43,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchRecipes", "passOnRecipeData"]),
+    ...mapActions(["fetchRecipes"]),
     handleScroll() {
       window.onscroll = () => {
         let bottomOfWindow =
@@ -61,9 +64,6 @@ export default {
           this.fetchRecipes(data);
         }
       };
-    },
-    onClick(recipe) {
-      this.passOnRecipeData(recipe);
     }
   },
   computed: mapGetters(["allRecipes", "isLoading"]),

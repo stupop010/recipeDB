@@ -7,12 +7,11 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Recipes from "./components/Recipes.vue";
+
 export default {
   name: "app",
   components: {
-    Header,
-    Recipes
+    Header
   }
 };
 </script>
