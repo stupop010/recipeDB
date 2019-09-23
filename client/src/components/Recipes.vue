@@ -2,7 +2,7 @@
   <ul>
     <Loading v-if="isLoading" />
     <div class="recipe-container">
-      <li class="recipe" v-for="recipe in allRecipes" :key="recipe.calories">
+      <li class="recipe" v-for="(recipe, index) in allRecipes" :key="index">
         <router-link
           v-on:click="onClick(recipe)"
           :to="{name: 'recipe', params: {name: recipe.label,recipe}}"
@@ -93,6 +93,7 @@ export default {
   border-radius: 1px;
 }
 .recipe > a > p {
+  padding-top: 0.5em;
   height: 2em;
 }
 .recipe > a > p:hover {
@@ -136,9 +137,3 @@ export default {
   opacity: 0.6;
 }
 </style>
-
-
-
-
-
-// :to="{ name:'single-recipe', params:{ tag: recipe.label}}"

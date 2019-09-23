@@ -97,4 +97,7 @@ form {
   color: white;
   outline: none;
 }
+button {
+  padding: 1px 7px 2px;
+}
 </style>

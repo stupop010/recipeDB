@@ -11,6 +11,22 @@
         <button class="recipe-btn">Save to favourites</button>
       </div>
     </div>
+    <div class="recipe-info">
+      <div class="ingredients">
+        <h2 class="section-title">{{recipe.ingredientLines.length}} Ingredients</h2>
+        <ul>
+          <li v-for="(ingredient, index) in recipe.ingredientLines" :key="index">{{ingredient}}</li>
+        </ul>
+        <div>
+          <h2 class="section-title">Preparation</h2>
+          <p class="prep-source">
+            <span class="btn">Instruction</span> on
+            <a :href="recipe.url">{{recipe.source}}</a>
+          </p>
+        </div>
+      </div>
+      <div>nut</div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +45,9 @@ export default {
       console.log(this);
       console.log(this.$route);
     }
+  },
+  created() {
+    console.log(this);
   }
 };
 </script>
@@ -36,16 +55,17 @@ export default {
 <style scoped>
 .container {
   padding: 3em;
+  width: 50em;
 }
 .hero {
-  border: 1px solid black;
+  border: 1px solid rgba(145, 143, 143, 0.2);
   height: 100%;
-  width: 50em;
+  width: 100%;
   padding: 0.2em;
   display: flex;
 }
 .hero-pic {
-  height: 18.7em;
+  height: 16.3em;
   width: 18.7em;
   background: no-repeat;
   background-size: contain;
@@ -55,6 +75,7 @@ export default {
   color: #666;
 }
 .hero-holder > h1 {
+  padding-top: 1em;
   font-weight: 900;
 }
 .hero-holder > p > a {
@@ -73,5 +94,44 @@ export default {
 }
 .recipe-btn:hover {
   cursor: pointer;
+}
+
+.recipe-info {
+  display: flex;
+  background: rgba(206, 201, 201, 0.2);
+  border: 1px solid rgba(145, 143, 143, 0.2);
+  box-shadow: inset 0 2px rgba(194, 191, 191, 0.2);
+}
+
+.recipe-info > div {
+  width: 50%;
+  padding: 0 2em;
+}
+.section-title {
+  padding: 0.7em 0 0.4em 0;
+  color: #666;
+  font-weight: 800;
+  border-bottom: 1px solid black;
+}
+.ingredients > ul {
+  margin-left: 1.5em;
+  text-align: start;
+  color: #666;
+}
+.ingredients > ul > li {
+  margin: 1.5em 0;
+  color: black;
+}
+.prep-source {
+  margin: 1.7em 0;
+}
+.prep-source > a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.btn {
+  padding: 0.4em 0.7em;
+  background: rgba(114, 111, 111, 0.2);
+  border: 1px solid rgba(95, 93, 93, 0.2);
 }
 </style>
