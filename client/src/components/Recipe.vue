@@ -25,13 +25,39 @@
           </p>
         </div>
       </div>
-      <div>nut</div>
+      <div>
+        <div>
+          <h2 class="section-title">Nutrition</h2>
+          <div class="serving">
+            <div class="cell">
+              {{Math.floor(recipe.calories / recipe.yield)}}
+              <span>CALORIES / SERVING</span>
+            </div>
+            <div class="cell">
+              {{recipe.yield}}
+              <span>SERVING</span>
+            </div>
+          </div>
+          <div>
+            <ul class="nutrition">
+              <li v-for="(nutrition, index) in recipe.digest" :key="index">
+                <span>{{nutrition.label}}</span>
+                <span>{{Math.floor(nutrition.total / recipe.yield)}}{{nutrition.unit}}</span>
+                <ul v-if="nutrition.sub">
+                  <li v-for="(sub, index) in nutrition.sub" :key="index">{{sub.label}}, hello</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import data from "../data";
 
 export default {
   name: "Recipe",
@@ -134,4 +160,28 @@ export default {
   background: rgba(114, 111, 111, 0.2);
   border: 1px solid rgba(95, 93, 93, 0.2);
 }
+
+.serving {
+  display: flex;
+  justify-content: space-around;
+  padding: 1em 0;
+  border-bottom: 1px solid black;
+}
+.cell {
+  font-size: 0.9em;
+}
+.cell > span {
+  display: block;
+}
+
+.nutrition {
+  text-align: start;
+}
+.nutrition > li {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+  color: black;
+}
 </style>
+
