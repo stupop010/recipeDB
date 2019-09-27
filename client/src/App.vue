@@ -37,4 +37,11 @@ a:visited {
   text-decoration: none;
   color: black;
 }
+
+.section-title {
+  padding: 0.7em 0 0.4em 0;
+  color: #666;
+  font-weight: 800;
+  border-bottom: 1px solid black;
+}
 </style>

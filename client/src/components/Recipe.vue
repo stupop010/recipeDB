@@ -12,40 +12,14 @@
       </div>
     </div>
     <div class="recipe-info">
-      <div class="ingredients">
-        <h2 class="section-title">{{recipe.ingredientLines.length}} Ingredients</h2>
-        <ul>
-          <li v-for="(ingredient, index) in recipe.ingredientLines" :key="index">{{ingredient}}</li>
-        </ul>
-        <div>
-          <h2 class="section-title">Preparation</h2>
-          <p class="prep-source">
-            <span class="btn">Instruction</span> on
-            <a :href="recipe.url">{{recipe.source}}</a>
-          </p>
-        </div>
-      </div>
+      <Ingredients :recipe="recipe" />
       <div>
         <div>
-          <h2 class="section-title">Nutrition</h2>
-          <div class="serving">
-            <div class="cell">
-              {{Math.floor(recipe.calories / recipe.yield)}}
-              <span>CALORIES / SERVING</span>
-            </div>
-            <div class="cell">
-              {{recipe.yield}}
-              <span>SERVING</span>
-            </div>
-          </div>
+          <Nutrition :recipe="recipe" />
           <div>
             <ul class="nutrition">
               <li v-for="(nutrition, index) in recipe.digest" :key="index">
-                <span>{{nutrition.label}}</span>
-                <span>{{Math.floor(nutrition.total / recipe.yield)}}{{nutrition.unit}}</span>
-                <ul v-if="nutrition.sub">
-                  <li v-for="(sub, index) in nutrition.sub" :key="index">{{sub.label}}, hello</li>
-                </ul>
+                <NutritionList :item="nutrition" :recipeYield="recipe.yield" />
               </li>
             </ul>
           </div>
@@ -56,6 +30,9 @@
 </template>
 
 <script>
+import NutritionList from "./recipe/NutritionList";
+import Nutrition from "./recipe/Nutrition";
+import Ingredients from "./recipe/Ingredients";
 import { mapGetters, mapActions } from "vuex";
 import data from "../data";
 
@@ -66,14 +43,10 @@ export default {
       recipe: this.$route.params.recipe
     };
   },
-  methods: {
-    onclick() {
-      console.log(this);
-      console.log(this.$route);
-    }
-  },
-  created() {
-    console.log(this);
+  components: {
+    NutritionList,
+    Nutrition,
+    Ingredients
   }
 };
 </script>
@@ -133,45 +106,11 @@ export default {
   width: 50%;
   padding: 0 2em;
 }
-.section-title {
-  padding: 0.7em 0 0.4em 0;
-  color: #666;
-  font-weight: 800;
-  border-bottom: 1px solid black;
-}
-.ingredients > ul {
-  margin-left: 1.5em;
-  text-align: start;
-  color: #666;
-}
-.ingredients > ul > li {
-  margin: 1.5em 0;
-  color: black;
-}
-.prep-source {
-  margin: 1.7em 0;
-}
-.prep-source > a {
-  text-decoration: underline;
-  font-weight: 600;
-}
+
 .btn {
   padding: 0.4em 0.7em;
   background: rgba(114, 111, 111, 0.2);
   border: 1px solid rgba(95, 93, 93, 0.2);
-}
-
-.serving {
-  display: flex;
-  justify-content: space-around;
-  padding: 1em 0;
-  border-bottom: 1px solid black;
-}
-.cell {
-  font-size: 0.9em;
-}
-.cell > span {
-  display: block;
 }
 
 .nutrition {
@@ -182,6 +121,9 @@ export default {
   justify-content: space-between;
   margin: 1em 0;
   color: black;
+}
+.sub-nut {
+  display: none;
 }
 </style>
 
