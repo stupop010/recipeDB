@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Recipe from "../components/Recipe";
+import Recipe from "../components/recipe/Recipe.vue";
 
 Vue.use(Router);
 
