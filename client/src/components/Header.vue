@@ -1,11 +1,13 @@
 <template>
   <header>
     <div class="header-container" v-on:submit.prevent="onSubmit">
-      <h1>Recipe DB</h1>
+      <router-link to="/">
+        <h1 @click="clearData">Recipe DB</h1>
+      </router-link>
       <form>
         <div class="search">
           <input type="text" v-model="search" />
-          <button type="button" class="clear-btn" v-on:click="clearData">clear</button>
+          <button type="button" class="clear-btn" @click="clearData">clear</button>
           <button type="submit" class="search-btn">search</button>
         </div>
       </form>
@@ -33,6 +35,7 @@ export default {
       this.$router.push({ path: `/search/${this.search}` });
     },
     clearData() {
+      console.log("click");
       this.search = "";
     }
   }

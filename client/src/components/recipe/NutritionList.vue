@@ -60,6 +60,9 @@ export default {
   transition: transform 300ms;
   outline: none;
 }
+.icon:hover{
+  cursor: pointer;
+}
 .rotate {
   transform: rotate(90deg);
 }

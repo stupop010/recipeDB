@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Recipe from "../components/recipe/Recipe.vue";
+import RecipeView from "../views/RecipeView.vue";
+import HomeView from "../views/HomeView.vue";
+import RecipesView from "../views/RecipesView.vue";
 
 Vue.use(Router);
 
@@ -10,17 +12,17 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      component: () => import("../views/HomeView.vue"),
+      component: HomeView,
       props: true
     },
     {
       path: "/search/:id",
-      component: () => import("../components/Recipes.vue")
+      component: RecipesView
     },
     {
       path: "/recipe/:name",
       name: "recipe",
-      component: Recipe,
+      component: RecipeView,
       props: route => ({ ...route.params })
     }
   ]
