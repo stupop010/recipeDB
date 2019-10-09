@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="header-container" v-on:submit.prevent="onSubmit">
-      <router-link to="/">
+      <router-link to="/login">
         <h1 @click="clearData">Recipe DB</h1>
       </router-link>
       <form>

@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header />
-    <router-view></router-view>
+    <main>
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </main>
   </div>
 </template>
 
@@ -43,5 +47,16 @@ a:visited {
   color: #666;
   font-weight: 800;
   border-bottom: 1px solid black;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>

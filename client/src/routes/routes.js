@@ -4,6 +4,8 @@ import Router from "vue-router";
 import RecipeView from "../views/RecipeView.vue";
 import HomeView from "../views/HomeView.vue";
 import RecipesView from "../views/RecipesView.vue";
+import LoginView from "../views/LoginView.vue";
+import Page404 from "../views/Page404.vue";
 
 Vue.use(Router);
 
@@ -24,6 +26,14 @@ const router = new Router({
       name: "recipe",
       component: RecipeView,
       props: route => ({ ...route.params })
+    },
+    {
+      path: "/login",
+      component: LoginView
+    },
+    {
+      path: "*",
+      component: Page404
     }
   ]
 });
