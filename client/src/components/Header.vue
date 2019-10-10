@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="header-container" v-on:submit.prevent="onSubmit">
-      <router-link to="/login">
+      <router-link to="/register">
         <h1 @click="clearData">Recipe DB</h1>
       </router-link>
       <form>
@@ -30,12 +30,10 @@ export default {
     ...mapActions(["fetchRecipes"]),
     onSubmit() {
       const data = { search: this.search, searchTo: 20 };
-      console.log(data);
       this.fetchRecipes(data);
       this.$router.push({ path: `/search/${this.search}` });
     },
     clearData() {
-      console.log("click");
       this.search = "";
     }
   }

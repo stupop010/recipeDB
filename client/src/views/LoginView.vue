@@ -1,34 +1,48 @@
 <template>
-  <div class="login-container">
-    <form class="form">
+  <div class="auth-container">
+    <form class="form" v-on:submit.prevent="onSubmit">
       <h2>Login</h2>
       <div class="form-group">
-        <input type="text" placeholder="Username" />
+        <input type="text" placeholder="Username" v-model="username" />
       </div>
       <div class="form-group">
-        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Password" v-model="password" />
       </div>
       <button type="submit" class="btn">Login</button>
       <div class="register">
         <p>Not Register?</p>
-        <button type="button" class="btn">Create New Account</button>
+        <button type="button" class="btn" @click="register">Create New Account</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "LoginView",
-
   data() {
-    return {};
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    ...mapActions(["fetchUser"]),
+    onSubmit() {
+      const data = { username: this.username, password: this.password };
+      this.fetchUser(data);
+    },
+    register() {
+      this.$router.push("/register");
+    }
   }
 };
 </script>
 
-<style scoped>
-.login-container {
+<style>
+.auth-container {
   background: rgba(2, 2, 2, 0.6);
   height: 100vh;
   width: 100vw;
@@ -72,6 +86,9 @@ export default {
   border-radius: 3px;
   font-size: 1.3em;
   background: rgba(63, 113, 252, 0.9);
+}
+.btn:hover {
+  cursor: pointer;
 }
 .register {
   padding-top: 2em;
