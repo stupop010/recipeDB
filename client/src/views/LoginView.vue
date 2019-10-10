@@ -3,17 +3,17 @@
     <form class="form">
       <h2>Login</h2>
       <div class="form-group">
-        <label>Username:</label>
-        <input type="text" />
+        <input type="text" placeholder="Username" />
       </div>
       <div class="form-group">
-        <label>Password:</label>
-        <input type="password" />
+        <input type="password" placeholder="Password" />
       </div>
-      <button>Login</button>
-      <button>Cancel</button>
+      <button type="submit" class="btn">Login</button>
+      <div class="register">
+        <p>Not Register?</p>
+        <button type="button" class="btn">Create New Account</button>
+      </div>
     </form>
-    <button>Register</button>
   </div>
 </template>
 
@@ -55,14 +55,29 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 60%;
-  margin: 0.5em auto;
+  margin: auto;
+  margin-bottom: 1em;
   font-size: 1.2em;
   font-weight: 500;
 }
 .form-group > input {
-  width: 9.5em;
+  width: 100%;
   border-radius: 2px;
-  padding-left: 0.5em;
+  padding: 5px 8px;
   font-size: 1em;
+}
+.btn {
+  padding: 0.2em 3em;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 1.3em;
+  background: rgba(63, 113, 252, 0.9);
+}
+.register {
+  padding-top: 2em;
+}
+.register > button {
+  margin-top: 0.5em;
+  background: rgba(79, 248, 107, 0.9);
 }
 </style>
