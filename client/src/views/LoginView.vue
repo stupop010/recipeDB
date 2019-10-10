@@ -3,7 +3,7 @@
     <form class="form" v-on:submit.prevent="onSubmit">
       <h2>Login</h2>
       <div class="form-group">
-        <input type="text" placeholder="Username" v-model="username" />
+        <input type="email" placeholder="Email" v-model="email" />
       </div>
       <div class="form-group">
         <input type="password" placeholder="Password" v-model="password" />
@@ -24,14 +24,14 @@ export default {
   name: "LoginView",
   data() {
     return {
-      username: "",
+      email: "",
       password: ""
     };
   },
   methods: {
     ...mapActions(["fetchUser"]),
     onSubmit() {
-      const data = { username: this.username, password: this.password };
+      const data = { email: this.email, password: this.password };
       this.fetchUser(data);
     },
     register() {

@@ -4,7 +4,7 @@
       <h2>Register</h2>
       <div v-if="error" class="error">{{error}}</div>
       <div class="form-group">
-        <input type="text" placeholder="Username" v-model="username" />
+        <input type="email" placeholder="email" v-model="email" />
       </div>
       <div class="form-group">
         <input type="password" placeholder="Password" v-model="password" />
@@ -27,7 +27,7 @@ export default {
   name: "RegisterView",
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       password2: "",
       error: ""
@@ -38,7 +38,7 @@ export default {
     onSubmit() {
       if (this.password !== this.password2)
         return (this.error = "Password don't match");
-      const data = { username: this.username, password: this.password };
+      const data = { email: this.email, password: this.password };
       this.clearData();
       this.registerUser(data);
     },
@@ -46,7 +46,7 @@ export default {
       this.$router.push("/login");
     },
     clearData() {
-      this.username = "";
+      this.email = "";
       this.password = "";
       this.password2 = "";
       this.error = "";
