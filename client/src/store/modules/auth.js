@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAuthHeaders } from "../../utils/setAuthHeaders";
 
 const state = {
   user: [],
@@ -8,15 +9,36 @@ const state = {
 const getters = {};
 
 const actions = {
-  async fetchUser({ commit }, data) {
-    console.log(data, "hello");
+  async loadUser({ commit }, data) {
+    if (localStorage.token) {
+      setAuthHeaders(localStorage.token);
+    }
+    try {
+      const res = await axios.get("/auth");
+      console.log(res);
+    } catch (err) {
+      // console.error(error);
+    }
   },
-  async registerUser({ commit }, data) {
-    console.log(data, "regist action");
+  async loginUser({ commit }, data) {
+    console.log("loggin");
+  },
+  async registerUser({ commit, dispatch }, data) {
+    try {
+      const res = await axios.post("/api/user", data);
+      commit("setToken", res.data.token);
+      dispatch("loadUser");
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
 
-const mutations = {};
+const mutations = {
+  setToken: (state, token) => {
+    localStorage.setItem("token", token);
+  }
+};
 
 export default {
   state,

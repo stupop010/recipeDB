@@ -14,13 +14,13 @@ const actions = {
   async fetchRecipes({ commit }, { search, searchTo }) {
     try {
       commit("setLoading", true);
-      const response = await axios.get("/api/data", {
+      const res = await axios.get("/api/data", {
         params: {
           search,
           searchTo
         }
       });
-      commit("setRecipes", response.data);
+      commit("setRecipes", res.data);
       commit("setLoading", false);
     } catch (err) {
       commit("setLoading", false);

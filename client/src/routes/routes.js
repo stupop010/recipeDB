@@ -23,7 +23,7 @@ const router = new Router({
     },
     { path: "/login", component: LoginView },
     { path: "/register", component: RegisterView },
-    { path: "*", component: Page404 }
+    { path: "/*", component: Page404 }
   ]
 });
 

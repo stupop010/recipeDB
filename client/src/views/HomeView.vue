@@ -1,9 +1,18 @@
 <template>
-  <div>ergfhfndewdf</div>
+  <div>ergfhfndewssdf</div>
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  name: "HomeView",
+  methods: {
+    ...mapActions(["loadUser"])
+  },
+  created() {
+    this.loadUser();
+  }
+};
 </script>
 
 <style>

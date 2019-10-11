@@ -14,9 +14,9 @@ const keys = require("../config/keys");
 router.post(
   "/",
   [
-    check("username")
-      .not()
-      .isEmpty(),
+    // check("username")
+    //   .not()
+    //   .isEmpty(),
     check("email").isEmail(),
     check("password")
       .not()
@@ -28,7 +28,7 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
     }
 
-    let { email, username, password } = req.body;
+    let { email, password } = req.body;
 
     try {
       // Check if user already exists
@@ -37,7 +37,7 @@ router.post(
           email: email
         }
       });
-      if (user) return res.json({ errors: [{ msg: "User already exists" }] });
+      if (user) return res.json({ errors: [{ msg: "Email already used" }] });
 
       // Hash the password
       const salt = await bcrypt.genSalt(10);
@@ -46,7 +46,6 @@ router.post(
       // Save to database
       const newUser = await User.create({
         email,
-        username,
         password
       });
 
