@@ -22,7 +22,7 @@ const router = new Router({
       component: RecipeView,
       props: route => ({ ...route.params })
     },
-    { path: "/login", component: LoginView },
+    { path: "/login", component: LoginView, meta: { isVistoring: true } },
     { path: "/register", component: RegisterView, meta: { isVistoring: true } },
     { path: "*", component: Page404 }
   ]

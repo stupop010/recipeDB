@@ -6,7 +6,11 @@ const state = {
 
 const getters = {};
 
-const actions = {};
+const actions = {
+  async setFavourites({ commit }, data) {
+    const res = await axios.post("/api/favourites", data);
+  }
+};
 
 const mutations = {};
 

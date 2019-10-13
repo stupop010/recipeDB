@@ -7,7 +7,7 @@
         See full recipe on:
         <a :href="recipe.url">{{recipe.source}}</a>
       </p>
-      <button class="recipe-btn">Save to favourites</button>
+      <button class="recipe-btn" @click="setFavourites">Save to favourites</button>
     </div>
   </div>
 </template>
@@ -15,7 +15,15 @@
 <script>
 export default {
   name: "RecipeHero",
-  props: ["recipe"]
+  props: ["recipe"],
+  methods: {
+    setFavourites() {
+      console.log(this);
+      this.$store.dispatch("setFavourites", {
+        ...this.recipe
+      });
+    }
+  }
 };
 </script>
 

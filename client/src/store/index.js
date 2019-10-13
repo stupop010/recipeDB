@@ -2,6 +2,7 @@ import Vuex from "vuex";
 import Vue from "vue";
 import recipes from "./modules/recipes";
 import auth from "./modules/auth";
+import favourties from "./modules/favourites";
 
 // Load Vuex
 Vue.use(Vuex);
@@ -10,6 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     recipes,
-    auth
+    auth,
+    favourties
   }
 });
