@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header-container" v-on:submit.prevent="onSubmit">
+    <div class="header-container" @submit.prevent="onSubmit">
       <router-link to="/register">
         <h1 @click="clearData">Recipe DB</h1>
       </router-link>
@@ -11,13 +11,18 @@
           <button type="submit" class="search-btn">search</button>
         </div>
       </form>
-      <div>menu</div>
+      <div>
+        <p v-if="isAuth">
+          hello
+          <button @click="signOut">Logout</button>
+        </p>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Header",
@@ -27,14 +32,23 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchRecipes"]),
     onSubmit() {
-      const data = { search: this.search, searchTo: 20 };
-      this.fetchRecipes(data);
+      this.$store.dispatch("fetchRecipes", {
+        search: this.search,
+        searchTo: 20
+      });
       this.$router.push({ path: `/search/${this.search}` });
+    },
+    signOut() {
+      this.$store.dispatch("logOut");
     },
     clearData() {
       this.search = "";
+    }
+  },
+  computed: {
+    isAuth() {
+      return this.$store.getters.isAuth;
     }
   }
 };

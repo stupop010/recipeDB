@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
 export default {
   name: "LoginView",
   data() {
@@ -29,10 +27,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchUser"]),
     onSubmit() {
-      const data = { email: this.email, password: this.password };
-      this.fetchUser(data);
+      this.$store.dispatch("loginUser", {
+        email: this.email,
+        password: this.password
+      });
     },
     register() {
       this.$router.push("/register");

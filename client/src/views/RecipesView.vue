@@ -26,7 +26,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchRecipes"]),
     handleScroll() {
       window.onscroll = () => {
         let bottomOfWindow =
@@ -40,16 +39,22 @@ export default {
 
         if (bottomOfWindow) {
           this.dataTo += 20;
-          const data = {
+          this.$store.dispatch("fetchRecipes", {
             search: this.$route.params.id,
             searchTo: this.dataTo
-          };
-          this.fetchRecipes(data);
+          });
         }
       };
     }
   },
-  computed: mapGetters(["allRecipes", "isLoading"]),
+  computed: {
+    isLoading() {
+      return this.$store.getters.isLoading;
+    },
+    allRecipes() {
+      return this.$store.getters.allRecipes;
+    }
+  },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },

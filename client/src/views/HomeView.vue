@@ -7,7 +7,9 @@ import { mapActions } from "vuex";
 export default {
   name: "HomeView",
   methods: {
-    ...mapActions(["loadUser"])
+    loadUser() {
+      this.$store.dispatch("loadUser");
+    }
   },
   created() {
     this.loadUser();

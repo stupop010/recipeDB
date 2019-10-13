@@ -7,13 +7,14 @@ import RecipesView from "../views/RecipesView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView";
 import Page404 from "../views/Page404.vue";
+import store from "../store";
 
 Vue.use(Router);
 
 const router = new Router({
   mode: "history",
   routes: [
-    { path: "/", component: HomeView, props: true },
+    { path: "/", component: HomeView },
     { path: "/search/:id", component: RecipesView },
     {
       path: "/recipe/:name",
@@ -22,9 +23,27 @@ const router = new Router({
       props: route => ({ ...route.params })
     },
     { path: "/login", component: LoginView },
-    { path: "/register", component: RegisterView },
-    { path: "/*", component: Page404 }
+    { path: "/register", component: RegisterView, meta: { isVistoring: true } },
+    { path: "*", component: Page404 }
   ]
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isAuth) {
+      next({
+        path: "/"
+      });
+    } else {
+      next();
+    }
+  } else if (to.matched.some(record => record.meta.isVistoring)) {
+    if (store.getters.isAuth) {
+      next({
+        path: "/login"
+      });
+    }
+  }
+  next();
+});
 export default router;
