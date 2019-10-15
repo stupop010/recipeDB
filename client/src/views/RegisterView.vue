@@ -53,14 +53,6 @@ export default {
     }
   },
   computed: mapGetters(["isAuth"])
-  // watch: {
-  //   isAuth: function(newAuth, oldAuth) {
-  //     if (newAuth) this.$router.push("/");
-  //   }
-  // },
-  // mounted() {
-  //   if (this.isAuth) this.$router.push("/");
-  // }
 };
 </script>
 

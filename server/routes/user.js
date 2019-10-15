@@ -14,9 +14,6 @@ const keys = require("../config/keys");
 router.post(
   "/",
   [
-    // check("username")
-    //   .not()
-    //   .isEmpty(),
     check("email").isEmail(),
     check("password")
       .not()
@@ -37,7 +34,10 @@ router.post(
           email: email
         }
       });
-      if (user) return res.json({ errors: [{ msg: "Email already used" }] });
+      if (user)
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Email already used" }] });
 
       // Hash the password
       const salt = await bcrypt.genSalt(10);

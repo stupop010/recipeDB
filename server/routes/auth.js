@@ -41,7 +41,6 @@ router.post(
     }
 
     const { email, password } = req.body;
-
     try {
       // Find user
       let user = await User.findOne({
@@ -50,12 +49,18 @@ router.post(
         }
       });
 
-      if (!user) return res.json({ errors: [{ msg: "Invalid Credentials" }] });
+      if (!user)
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Invalid Credentials" }] });
 
       // Check password for a match
       const match = await bcrypt.compare(password, user.dataValues.password);
 
-      if (!match) return res.json({ errors: [{ msg: "Invalid Credentials" }] });
+      if (!match)
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Invalid Credentials" }] });
 
       // JWT sign and send as response
       const payload = {
@@ -63,8 +68,10 @@ router.post(
           id: user.dataValues.id
         }
       };
+      console.log(payload);
       jwt.sign(payload, keys.jwt, { expiresIn: 360000 }, (err, token) => {
         if (err) throw err;
+        console.log({ token });
         res.json({ token });
       });
     } catch (error) {

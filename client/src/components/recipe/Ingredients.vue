@@ -42,4 +42,9 @@ export default {
   text-decoration: underline;
   font-weight: 600;
 }
+.btn {
+  padding: 0.4em 0.7em;
+  background: rgba(114, 111, 111, 0.2);
+  border: 1px solid rgba(95, 93, 93, 0.2);
+}
 </style>
