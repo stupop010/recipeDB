@@ -1,18 +1,16 @@
 <template>
-  <div>ergfhfndewssdf</div>
+  <div>
+    <Favourites />
+  </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import Favourites from "../components/favourites/favourites";
+
 export default {
   name: "HomeView",
-  methods: {
-    loadUser() {
-      this.$store.dispatch("loadUser");
-    }
-  },
-  created() {
-    this.loadUser();
+  components: {
+    Favourites
   }
 };
 </script>

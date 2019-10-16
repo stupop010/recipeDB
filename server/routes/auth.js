@@ -68,10 +68,8 @@ router.post(
           id: user.dataValues.id
         }
       };
-      console.log(payload);
       jwt.sign(payload, keys.jwt, { expiresIn: 360000 }, (err, token) => {
         if (err) throw err;
-        console.log({ token });
         res.json({ token });
       });
     } catch (error) {

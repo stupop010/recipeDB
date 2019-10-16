@@ -18,10 +18,7 @@ export default {
   props: ["recipe"],
   methods: {
     setFavourites() {
-      console.log(this);
-      this.$store.dispatch("setFavourites", {
-        ...this.recipe
-      });
+      this.$store.dispatch("setFavourites", { ...this.recipe });
     }
   }
 };

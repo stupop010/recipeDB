@@ -2,18 +2,37 @@ const express = require("express");
 
 const router = express.Router();
 
+const isAuth = require("../middleware/isAuth");
 const UserFavouriteItem = require("../models/userFavouriteItem");
 
-router.post("/", async (req, res) => {
+const getFavouritesData = require("../utils/getFavouritesData");
+
+router.post("/", isAuth, async (req, res) => {
   try {
-    const recipeJson = JSON.stringify(req.body);
-    console.log(req.user);
-    // const favourite = await UserFavouriteItem.create({
-    //   _User = req,
-    //   data = recipeJson
-    // })
-  } catch (error) {
-    console.error(error);
+    const { uri, label } = req.body;
+    const favourite = await UserFavouriteItem.create({
+      label,
+      uri,
+      userId: req.user.id
+    });
+    res.json(favourite.dataValues);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+router.get("/", isAuth, async (req, res) => {
+  try {
+    const favourites = await UserFavouriteItem.findAll({
+      where: {
+        userId: req.user.id
+      }
+    });
+    const data = getFavouritesData(favourites);
+    res.json(data);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
   }
 });
 

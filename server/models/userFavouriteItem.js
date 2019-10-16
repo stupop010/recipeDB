@@ -9,11 +9,13 @@ const UserFavouriteItem = sequelize.define("useFavouriteItem", {
     allowNull: false,
     primaryKey: true
   },
-  _User: {
-    type: Sequelize.INTEGER
+  uri: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
-  data: {
-    type: Sequelize.STRING
+  label: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 

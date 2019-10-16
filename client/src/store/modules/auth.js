@@ -21,6 +21,7 @@ const actions = {
     }
     try {
       const res = await axios.get("/api/auth");
+      console.log("im called 2");
       commit("setUser", res.data);
       commit("setAuth", true);
     } catch (err) {
@@ -52,7 +53,6 @@ const actions = {
     if (getters.isAuth) {
       try {
         localStorage.removeItem("token");
-        console.log(router.history.current.path);
         if (router.history.current.path !== "/") {
           router.push("/");
         }
