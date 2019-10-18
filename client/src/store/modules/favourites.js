@@ -24,6 +24,16 @@ const actions = {
     } catch (err) {
       console.error(err);
     }
+  },
+  async fetchFavouriteRecipe({ commit }, data) {
+    try {
+      const res = await axios.get("/api/data/favourite", {
+        params: { data }
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
 

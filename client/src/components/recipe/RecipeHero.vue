@@ -27,7 +27,6 @@ export default {
 <style scoped>
 .hero {
   border: 1px solid rgba(145, 143, 143, 0.2);
-  height: 100%;
   width: 100%;
   padding: 0.2em;
   display: flex;

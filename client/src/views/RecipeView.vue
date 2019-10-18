@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <RecipeHero :recipe="recipe" />
+  <section class="container">
+    <!-- <RecipeHero :recipe="recipe" />
     <div class="recipe-info">
       <Ingredients :recipe="recipe" />
       <div>
@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div>-->
+  </section>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ import NutritionList from "../components/recipe/NutritionList";
 import Nutrition from "../components/recipe/Nutrition";
 import Ingredients from "../components/recipe/Ingredients";
 import RecipeHero from "../components/recipe/RecipeHero";
+import Favourites from "../components/favourites/Favourites";
 
 export default {
   name: "RecipeView",
@@ -36,17 +37,22 @@ export default {
     NutritionList,
     Nutrition,
     Ingredients,
-    RecipeHero
+    RecipeHero,
+    Favourites
+  },
+  created() {
+    if (this.$route.params.shouldFetch) {
+      console.log(this.$route);
+      this.$store.dispatch("fetchFavouriteRecipe", this.$route.params.uri);
+    }
   }
 };
 </script>
 
 <style scoped>
 .container {
-  padding: 3em;
-  width: 50em;
+  margin-left: 2em;
 }
-
 .recipe-info {
   display: flex;
   border: 1px solid rgba(145, 143, 143, 0.2);
@@ -54,7 +60,6 @@ export default {
 }
 
 .recipe-info > div {
-  width: 50%;
   padding: 0 2em;
 }
 

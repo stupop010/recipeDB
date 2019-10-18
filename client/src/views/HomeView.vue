@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Favourites />
+    <!-- <Favourites /> -->
   </div>
 </template>
 
 <script>
-import Favourites from "../components/favourites/favourites";
+import Favourites from "../components/favourites/Favourites";
 
 export default {
   name: "HomeView",

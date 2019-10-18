@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <main>
+      <Favourites />
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>
@@ -11,11 +12,13 @@
 
 <script>
 import Header from "./components/Header.vue";
+import Favourites from "./components/favourites/Favourites";
 
 export default {
   name: "app",
   components: {
-    Header
+    Header,
+    Favourites
   },
   created() {
     this.$store.dispatch("loadUser");
@@ -61,5 +64,10 @@ a:visited {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+main {
+  padding: 2em 0.5em;
+  display: flex;
 }
 </style>

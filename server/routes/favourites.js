@@ -30,7 +30,6 @@ router.get("/", isAuth, async (req, res) => {
     });
     const data = getFavouritesData(favourites);
     res.json(data);
-    console.log(data);
   } catch (err) {
     console.error(err);
   }
