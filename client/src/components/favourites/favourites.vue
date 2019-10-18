@@ -16,9 +16,7 @@
 export default {
   name: "Favourites",
   created() {
-    if (!this.$store.getters.fetchFavourites.length > 0) {
-      this.$store.dispatch("fetchFavourites");
-    }
+    this.$store.dispatch("fetchFavourites");
   },
   computed: {
     favourites() {

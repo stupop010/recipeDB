@@ -18,12 +18,11 @@ const actions = {
     }
   },
   async fetchFavourites({ commit }) {
-    console.log("fetching");
     try {
       const res = await axios.get("/api/favourites");
       commit("setFavourites", res.data);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   },
   async fetchFavouriteRecipe({ commit }, data) {

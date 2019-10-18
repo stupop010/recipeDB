@@ -23,7 +23,7 @@ const actions = {
       const res = await axios.get("/api/auth");
       console.log("im called 2");
       commit("setUser", res.data);
-      commit("setAuth", true);
+      commit("setAuth");
     } catch (err) {
       console.error(err);
     }
@@ -33,7 +33,7 @@ const actions = {
       const res = await axios.post("/api/auth", data);
       setLocalStorage("token", res.data.token);
       commit("setToken", res.data.token);
-      commit("setAuth", true);
+      commit("setAuth");
       router.push("/");
     } catch (err) {
       console.error(err);
@@ -44,6 +44,7 @@ const actions = {
       const res = await axios.post("/api/user", data);
       setLocalStorage("token", res.data.token);
       commit("setToken", res.data.token);
+      commit("setAuth");
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -66,7 +67,7 @@ const actions = {
 
 const mutations = {
   setUser: (state, user) => (state.user = user),
-  setAuth: (state, auth) => (state.isAuth = auth),
+  setAuth: (state, auth) => (state.isAuth = true),
   setToken: (state, token) => (state.token = token),
   logOut: (state, auth) => {
     (state.isAuth = auth), (state.user = []), (state.token = null);

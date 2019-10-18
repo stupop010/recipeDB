@@ -20,7 +20,14 @@ export default {
     Favourites
   },
   created() {
-    this.$store.dispatch("loadUser");
+    this.$store.watch(
+      (state, getters) => getters.isAuth,
+      (newValue, oldValue) => {
+        if (newValue === true) {
+          this.$store.dispatch("loadUser");
+        }
+      }
+    );
   }
 };
 </script>
