@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="header-container" @submit.prevent="onSubmit">
-      <router-link to="/register">
+      <router-link to="/">
         <h1 @click="clearData">Recipe DB</h1>
       </router-link>
       <form>
@@ -12,6 +12,10 @@
         </div>
       </form>
       <div>
+        <ul>
+          <router-link to="/login">login</router-link>
+          <router-link to="/register">resigter</router-link>
+        </ul>
         <p v-if="isAuth">
           hello
           <button @click="signOut">Logout</button>

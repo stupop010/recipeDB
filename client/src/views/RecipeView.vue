@@ -1,4 +1,5 @@
 <template>
+<Layout>
   <section class="container">
     <!-- <RecipeHero :recipe="recipe" />
     <div class="recipe-info">
@@ -17,6 +18,7 @@
       </div>
     </div>-->
   </section>
+  </layout>
 </template>
 
 <script>
@@ -25,6 +27,7 @@ import Nutrition from "../components/recipe/Nutrition";
 import Ingredients from "../components/recipe/Ingredients";
 import RecipeHero from "../components/recipe/RecipeHero";
 import Favourites from "../components/favourites/Favourites";
+import Layout from "../components/Layout"
 
 export default {
   name: "RecipeView",
@@ -41,9 +44,10 @@ export default {
     Favourites
   },
   created() {
-    if (this.$route.params.shouldFetch) {
+    const { shouldFetch, url } = this.$route.params;
+    if (shouldFetch) {
       console.log(this.$route);
-      this.$store.dispatch("fetchFavouriteRecipe", this.$route.params.uri);
+      this.$store.dispatch("fetchFavouriteRecipe", uri);
     }
   }
 };

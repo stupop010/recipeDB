@@ -1,16 +1,19 @@
 <template>
-  <div>
-    <Loading v-if="isLoading" />
-    <div class="recipe-container">
-      <div class="recipe" v-for="(recipe, index) in allRecipes" :key="index">
-        <RecipesCard :recipe="recipe" />
+  <Layout>
+    <div>
+      <Loading v-if="isLoading" />
+      <div class="recipe-container">
+        <div class="recipe" v-for="(recipe, index) in allRecipes" :key="index">
+          <RecipesCard :recipe="recipe" />
+        </div>
       </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Layout from "../components/Layout";
 import RecipesCard from "../components/recipes/RecipesCard";
 import Loading from "../components/Loading";
 
@@ -18,7 +21,8 @@ export default {
   name: "RecipesView",
   components: {
     RecipesCard,
-    Loading
+    Loading,
+    Layout
   },
   data() {
     return {

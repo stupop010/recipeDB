@@ -13,10 +13,10 @@ router.get("/", async (req, res) => {
     .then(json => {
       const results = [];
       json.hits.map(item => results.push(item.recipe));
-      return res.json(results);
+      res.json(results);
     })
     .catch(err => {
-      return res.status(500).json({ errors: [{ msg: "Server Error" }] });
+      res.status(500).json({ errors: [{ msg: "Server Error" }] });
     });
 });
 
@@ -28,10 +28,10 @@ router.get("/favourite", async (req, res) => {
   )
     .then(results => results.json())
     .then(recipe => {
-      return res.json(recipe[0]);
+      res.json(recipe[0]);
     })
     .catch(err => {
-      return res.status(500).json({ errors: [{ msg: "Server Error" }] });
+      res.status(500).json({ errors: [{ msg: "Server Error" }] });
     });
 });
 

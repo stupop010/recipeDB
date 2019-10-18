@@ -6,7 +6,8 @@ import HomeView from "../views/HomeView.vue";
 import RecipesView from "../views/RecipesView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView";
-import Page404 from "../views/Page404.vue";
+import Page404 from "../views/Page404";
+import LandingPage from "../views/LandingPage";
 import store from "../store";
 
 Vue.use(Router);
@@ -14,7 +15,7 @@ Vue.use(Router);
 const router = new Router({
   mode: "history",
   routes: [
-    { path: "/", component: HomeView },
+    { path: "/", component: LandingPage },
     { path: "/search/:id", component: RecipesView },
     {
       path: "/recipe/:name",

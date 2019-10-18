@@ -2,7 +2,6 @@
   <div id="app">
     <Header />
     <main>
-      <Favourites />
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>
