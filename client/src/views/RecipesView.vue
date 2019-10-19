@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div>
+    <div class="width">
       <Loading v-if="isLoading" />
       <div class="recipe-container">
         <div class="recipe" v-for="(recipe, index) in allRecipes" :key="index">
@@ -69,8 +69,11 @@ export default {
 </script>
 
 <style>
+.width {
+  width: 80%;
+}
 .recipe-container {
-  width: 980px;
+  width: 100%;
   margin: 0 3em;
   display: flex;
   flex-wrap: wrap;

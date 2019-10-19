@@ -1,6 +1,6 @@
 <template>
   <div class="ingredients">
-    <h2 class="section-title">{{recipe.ingredientLines.length}} Ingredients</h2>
+    <h2 class="section-title">{{recipeLength}} Ingredients</h2>
     <ul>
       <li v-for="(ingredient, index) in recipe.ingredientLines" :key="index">{{ingredient}}</li>
     </ul>
@@ -17,7 +17,16 @@
 <script>
 export default {
   name: "Ingredients",
-  props: ["recipe"]
+  props: ["recipe"],
+  computed: {
+    recipeLength() {
+      if (!this.recipe.ingredientLines) {
+        return null;
+      } else {
+        return this.recipe.ingredientLines.length;
+      }
+    }
+  }
 };
 </script>
 

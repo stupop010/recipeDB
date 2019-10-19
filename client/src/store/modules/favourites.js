@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const state = {
-  favourites: []
+  favourites: [],
+  recipe: [],
+  loading: false
 };
 
 const getters = {
-  fetchFavourites: state => state.favourites
+  fetchFavourites: state => state.favourites,
+  fetchRecipe: state => state.recipe,
+  favouriteLoading: state => state.loading
 };
 
 const actions = {
@@ -27,10 +31,12 @@ const actions = {
   },
   async fetchFavouriteRecipe({ commit }, data) {
     try {
+      commit("setLoading", true);
       const res = await axios.get("/api/data/favourite", {
         params: { data }
       });
-      console.log(res.data);
+      commit("setRecipe", res.data);
+      commit("setLoading", false);
     } catch (err) {
       console.error(err);
     }
@@ -39,7 +45,9 @@ const actions = {
 
 const mutations = {
   setFavourites: (state, favourites) => (state.favourites = favourites),
-  addFavourites: (state, favourite) => state.favourites.push(favourite)
+  addFavourites: (state, favourite) => state.favourites.push(favourite),
+  setRecipe: (state, recipe) => (state.recipe = recipe),
+  setLoading: (state, loading) => (state.loading = loading)
 };
 
 export default {

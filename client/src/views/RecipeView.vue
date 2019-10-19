@@ -1,92 +1,64 @@
 <template>
-<Layout>
-  <section class="container">
-    <!-- <RecipeHero :recipe="recipe" />
-    <div class="recipe-info">
-      <Ingredients :recipe="recipe" />
-      <div>
-        <div>
-          <Nutrition :recipe="recipe" />
+  <div>
+    <Loading v-if="isLoading" />
+    <!-- <Layout>
+    <Loading v-if="isLoading" />
+      <section class="container">
+        <RecipeHero :recipe="recipe || favRecipe" />
+        <div class="recipe-info">
+          <Ingredients :recipe="recipe || favRecipe" />
           <div>
-            <ul class="nutrition">
-              <li v-for="(nutrition, index) in recipe.digest" :key="index">
-                <NutritionList :item="nutrition" :recipeYield="recipe.yield" />
-              </li>
-            </ul>
+            <div>
+              <Nutrition :recipe="recipe || favRecipe" />
+              <div>
+                  <NutritionList :item="recipe || favRecipe"/>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>-->
-  </section>
-  </layout>
+        </div> 
+      </section>
+    </layout>-->
+    <Recipe :item="recipe || favRecipe" />
+  </div>
 </template>
 
 <script>
-import NutritionList from "../components/recipe/NutritionList";
-import Nutrition from "../components/recipe/Nutrition";
-import Ingredients from "../components/recipe/Ingredients";
-import RecipeHero from "../components/recipe/RecipeHero";
-import Favourites from "../components/favourites/Favourites";
-import Layout from "../components/Layout"
+import Recipe from "../components/recipe";
+import Loading from "../components/Loading";
 
 export default {
   name: "RecipeView",
   data() {
     return {
-      recipe: this.$route.params.recipe
+      recipe: this.$route.params.recipe || null
     };
   },
   components: {
-    NutritionList,
-    Nutrition,
-    Ingredients,
-    RecipeHero,
-    Favourites
+    Loading,
+    Recipe
+  },
+  methods: {
+    showThis() {
+      console.log(this);
+    }
   },
   created() {
-    const { shouldFetch, url } = this.$route.params;
+    const { shouldFetch, uri } = this.$route.params;
     if (shouldFetch) {
-      console.log(this.$route);
       this.$store.dispatch("fetchFavouriteRecipe", uri);
+    }
+  },
+  computed: {
+    favRecipe() {
+      return this.$store.getters.fetchRecipe;
+    },
+    isLoading() {
+      return this.$store.getters.isLoading;
     }
   }
 };
 </script>
 
 <style scoped>
-.container {
-  margin-left: 2em;
-}
-.recipe-info {
-  display: flex;
-  border: 1px solid rgba(145, 143, 143, 0.2);
-  box-shadow: inset 0 2px rgba(194, 191, 191, 0.2);
-}
-
-.recipe-info > div {
-  padding: 0 2em;
-}
-
-.nutrition {
-  text-align: start;
-}
-.nutrition > li {
-  display: flex;
-  justify-content: space-between;
-  margin: 1em 0;
-}
-
-.nutrition > li:nth-child(1) {
-  color: red;
-}
-.nutrition > li:nth-child(2) {
-  color: orange;
-}
-.nutrition > li:nth-child(3) {
-  color: green;
-}
-.sub-nut {
-  display: none;
-}
 </style>
 

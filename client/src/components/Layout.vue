@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="lay-container">
     <Favourites v-if="isAuth" />
     <slot></slot>
   </div>
@@ -20,5 +20,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.lay-container {
+  display: flex;
+}
 </style>

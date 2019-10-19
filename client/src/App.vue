@@ -20,6 +20,7 @@ export default {
     Favourites
   },
   created() {
+    this.$store.dispatch("loadUser");
     this.$store.watch(
       (state, getters) => getters.isAuth,
       (newValue, oldValue) => {
@@ -74,6 +75,5 @@ a:visited {
 
 main {
   padding: 2em 0.5em;
-  display: flex;
 }
 </style>
