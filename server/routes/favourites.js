@@ -35,4 +35,18 @@ router.get("/", isAuth, async (req, res) => {
   }
 });
 
+router.delete("/", isAuth, async (req, res) => {
+  try {
+    const { id } = req.body;
+    await UserFavouriteItem.destroy({
+      where: {
+        id
+      }
+    });
+    res.json(id);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 module.exports = router;

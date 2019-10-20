@@ -2,26 +2,33 @@
   <div class="fav-container">
     <h3>Favourites</h3>
     <ul>
-      <li class="fav-items" v-for="(favourite, index) in favourites" :key="index">
-        <!-- Add shouldFetch to tell RecipeView component to fetch data -->
-        <router-link
+      <li v-for="(favourite, index) in favourites" :key="index">
+        <!-- <router-link
           :to="{name: 'recipe', params:{name: favourite.label, shouldFetch: true, uri:favourite.uri}}"
         >{{favourite.label}}</router-link>
+        <button class="del-btn" @click="deleteItem">
+          <font-awesome-icon icon="times" size="2x" />
+        </button>-->
+        <FavouritesList :favourite="favourite" />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import FavouritesList from "./FavouritesList";
 export default {
   name: "Favourites",
-  created() {
-    this.$store.dispatch("fetchFavourites");
+  components: {
+    FavouritesList
   },
   computed: {
     favourites() {
       return this.$store.getters.fetchFavourites;
     }
+  },
+  created() {
+    this.$store.dispatch("fetchFavourites");
   }
 };
 </script>
@@ -30,17 +37,14 @@ export default {
 .fav-container {
   width: 15em;
   border: 1px solid black;
-  background: lightblue;
+  border-radius: 3px;
+  background: rgba(11, 11, 11, 0.2);
   height: 30em;
 }
 .fav-container > h3 {
+  color: rgba(7, 7, 7, 0.8);
   font-size: 1.6em;
   font-weight: 900;
   text-decoration: underline;
-}
-.fav-items {
-  line-height: 1.6em;
-  font-size: 1.1em;
-  font-weight: 500;
 }
 </style>

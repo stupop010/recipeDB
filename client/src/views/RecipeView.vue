@@ -1,23 +1,6 @@
 <template>
   <div>
     <Loading v-if="isLoading" />
-    <!-- <Layout>
-    <Loading v-if="isLoading" />
-      <section class="container">
-        <RecipeHero :recipe="recipe || favRecipe" />
-        <div class="recipe-info">
-          <Ingredients :recipe="recipe || favRecipe" />
-          <div>
-            <div>
-              <Nutrition :recipe="recipe || favRecipe" />
-              <div>
-                  <NutritionList :item="recipe || favRecipe"/>
-              </div>
-            </div>
-          </div>
-        </div> 
-      </section>
-    </layout>-->
     <Recipe :item="recipe || favRecipe" />
   </div>
 </template>
@@ -38,14 +21,11 @@ export default {
     Recipe
   },
   methods: {
-    showThis() {
-      console.log(this);
-    }
-  },
-  created() {
-    const { shouldFetch, uri } = this.$route.params;
-    if (shouldFetch) {
-      this.$store.dispatch("fetchFavouriteRecipe", uri);
+    fetchRecipe() {
+      const { shouldFetch, uri } = this.$route.params;
+      if (shouldFetch) {
+        this.$store.dispatch("fetchFavouriteRecipe", uri);
+      }
     }
   },
   computed: {
@@ -54,6 +34,14 @@ export default {
     },
     isLoading() {
       return this.$store.getters.isLoading;
+    }
+  },
+  created() {
+    this.fetchRecipe();
+  },
+  watch: {
+    $route() {
+      this.fetchRecipe();
     }
   }
 };

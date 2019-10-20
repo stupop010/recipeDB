@@ -26,7 +26,7 @@ const actions = {
       const res = await axios.get("/api/favourites");
       commit("setFavourites", res.data);
     } catch (err) {
-      // console.error(err);
+      console.error(err);
     }
   },
   async fetchFavouriteRecipe({ commit }, data) {
@@ -40,6 +40,14 @@ const actions = {
     } catch (err) {
       console.error(err);
     }
+  },
+  async deleteFavourite({ commit }, id) {
+    try {
+      const res = await axios.delete("/api/favourites", { data: { id } });
+      commit("deleteFavourite", res.data);
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
 
@@ -47,7 +55,9 @@ const mutations = {
   setFavourites: (state, favourites) => (state.favourites = favourites),
   addFavourites: (state, favourite) => state.favourites.push(favourite),
   setRecipe: (state, recipe) => (state.recipe = recipe),
-  setLoading: (state, loading) => (state.loading = loading)
+  setLoading: (state, loading) => (state.loading = loading),
+  deleteFavourite: (state, id) =>
+    (state.favourites = state.favourites.filter(fav => fav.id !== id))
 };
 
 export default {

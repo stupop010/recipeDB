@@ -37,14 +37,6 @@ export default {
     setShow() {
       this.show = !this.show;
     }
-  },
-  mounted() {
-    console.log(this);
-  },
-  computed: {
-    log() {
-      console.log(this);
-    }
   }
 };
 </script>

@@ -31,6 +31,7 @@ router.get("/favourite", async (req, res) => {
       res.json(recipe[0]);
     })
     .catch(err => {
+      console.log(err);
       res.status(500).json({ errors: [{ msg: "Server Error" }] });
     });
 });
