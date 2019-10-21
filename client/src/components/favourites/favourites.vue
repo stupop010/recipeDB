@@ -3,12 +3,6 @@
     <h3>Favourites</h3>
     <ul>
       <li v-for="(favourite, index) in favourites" :key="index">
-        <!-- <router-link
-          :to="{name: 'recipe', params:{name: favourite.label, shouldFetch: true, uri:favourite.uri}}"
-        >{{favourite.label}}</router-link>
-        <button class="del-btn" @click="deleteItem">
-          <font-awesome-icon icon="times" size="2x" />
-        </button>-->
         <FavouritesList :favourite="favourite" />
       </li>
     </ul>

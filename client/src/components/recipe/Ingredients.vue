@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 .ingredients {
-  width: 50%;
+  width: 30em;
   padding: 0 2em;
 }
 .ingredients > ul {

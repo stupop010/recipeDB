@@ -7,7 +7,7 @@
         See full recipe on:
         <a :href="recipe.url">{{recipe.source}}</a>
       </p>
-      <button class="recipe-btn" @click="setFavourites">Save to favourites</button>
+      <button class="recipe-btn" :disabled="ifFav" @click="setFavourites">Save to favourites</button>
     </div>
   </div>
 </template>
@@ -19,6 +19,20 @@ export default {
   methods: {
     setFavourites() {
       this.$store.dispatch("setFavourites", { ...this.recipe });
+    }
+  },
+  computed: {
+    ifFav() {
+      const fav = this.$store.getters.fetchFavourites;
+      const favFilter = fav.filter(fav => {
+        return fav.label === this.recipe.label;
+      });
+      if (favFilter.length >= 1) {
+        this.$store.dispatch("setError", "Allready a Favourite");
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

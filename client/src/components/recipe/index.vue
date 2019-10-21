@@ -4,12 +4,14 @@
       <RecipeHero :recipe="item" />
       <div class="recipe-info">
         <Ingredients :recipe="item" />
-        <div>
+        <div class="nutrition-container">
+          <Nutrition :recipe="item" />
           <div>
-            <Nutrition :recipe="item" />
-            <div>
-              <NutritionList :item="item" />
-            </div>
+            <ul class="nutrition">
+              <li v-for="(recipe, index) in item.digest" :key="index">
+                <NutritionList :recipe="recipe" :recipeYield="item.yield" />
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -48,5 +50,8 @@ export default {
 
 .recipe-info > div {
   padding: 0 2em;
+}
+.nutrition-container {
+  width: 22em;
 }
 </style>

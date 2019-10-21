@@ -1,33 +1,29 @@
 <template>
-  <ul class="nutrition">
-    <li v-for="(recipe, index) in item.digest" :key="index">
-      <div class="list-container">
-        <div class="list">
-          <span>
-            <button v-if="recipe.sub" @click="setShow" class="icon" :class="{rotate: show}">
-              <font-awesome-icon icon="angle-right" size="2x" />
-            </button>
-            {{recipe.label}}
-          </span>
-          <span>{{Math.floor(recipe.total / item.yield)}}{{recipe.unit}}</span>
-        </div>
-        <div v-if="recipe.sub && show">
-          <ul>
-            <li class="sub-list" v-for="(sub, index) in recipe.sub" :key="index">
-              <span>{{sub.label}}</span>
-              <span>{{Math.floor(sub.total / item.yield)}}{{sub.unit}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <div class="list-container">
+    <div class="list">
+      <span>
+        <button v-if="recipe.sub" @click="setShow" class="icon" :class="{rotate: show}">
+          <font-awesome-icon icon="angle-right" size="2x" />
+        </button>
+        {{recipe.label}}
+      </span>
+      <span>{{Math.floor(recipe.total / recipeYield)}}{{recipe.unit}}</span>
+    </div>
+    <div v-if="recipe.sub && show">
+      <ul>
+        <li class="sub-list" v-for="(sub, index) in recipe.sub" :key="index">
+          <span>{{sub.label}}</span>
+          <span>{{Math.floor(sub.total / recipeYield)}}{{sub.unit}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "NutritionList",
-  props: ["item", "recipeYield"],
+  props: ["recipe", "recipeYield"],
   data() {
     return {
       show: false

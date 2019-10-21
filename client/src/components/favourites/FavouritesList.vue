@@ -44,4 +44,7 @@ export default {
 .del-btn:hover {
   transform: rotate(180deg);
 }
+.del-btn:focus {
+  outline: none;
+}
 </style>
