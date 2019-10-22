@@ -21,7 +21,6 @@ const actions = {
     }
     try {
       const res = await axios.get("/api/auth");
-      console.log("im called 2");
       commit("setUser", res.data);
       commit("setAuth");
     } catch (err) {

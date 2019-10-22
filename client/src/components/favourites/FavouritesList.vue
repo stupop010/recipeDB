@@ -43,6 +43,7 @@ export default {
 }
 .del-btn:hover {
   transform: rotate(180deg);
+  cursor: pointer;
 }
 .del-btn:focus {
   outline: none;

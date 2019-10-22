@@ -6,6 +6,7 @@ import HomeView from "../views/HomeView.vue";
 import RecipesView from "../views/RecipesView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView";
+import ProfileView from "../views/ProfileView";
 import Page404 from "../views/Page404";
 import LandingPage from "../views/LandingPage";
 import store from "../store";
@@ -25,6 +26,13 @@ const router = new Router({
     },
     { path: "/login", component: LoginView, meta: { isVistoring: true } },
     { path: "/register", component: RegisterView, meta: { isVistoring: true } },
+    {
+      path: "/profile",
+      component: ProfileView,
+      name: "profile"
+      // Removed require auth only to build the component
+      // meta: { requiresAuth: true }
+    },
     { path: "*", component: Page404 }
   ]
 });
@@ -32,9 +40,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isAuth) {
-      next({
-        path: "/"
-      });
+      next("/login");
     } else {
       next();
     }

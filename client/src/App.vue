@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :user="user" />
     <main>
       <transition name="fade" mode="out-in">
         <router-view />
@@ -20,15 +20,22 @@ export default {
     Favourites
   },
   created() {
+    // TODO: calls loadUser twice when reload page
     this.$store.dispatch("loadUser");
     this.$store.watch(
       (state, getters) => getters.isAuth,
       (newValue, oldValue) => {
+        console.log(newValue, oldValue);
         if (newValue === true) {
           this.$store.dispatch("loadUser");
         }
       }
     );
+  },
+  computed: {
+    user() {
+      return this.$store.getters.fetchUser;
+    }
   }
 };
 </script>

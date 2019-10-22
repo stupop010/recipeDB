@@ -15,6 +15,7 @@
         <ul>
           <router-link to="/login">login</router-link>
           <router-link to="/register">resigter</router-link>
+          <router-link to="/profile">profile</router-link>
         </ul>
         <p v-if="isAuth">
           hello
@@ -26,8 +27,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Header",
   data() {
@@ -35,6 +34,7 @@ export default {
       search: ""
     };
   },
+  props: ["user"],
   methods: {
     onSubmit() {
       this.$store.dispatch("fetchRecipes", {
