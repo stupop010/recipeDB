@@ -12,15 +12,16 @@
       <label>email</label>
       <input type="email" :placeholder="user.email" :v-model="email" />
     </div>
-    <button type="submit">save</button>
-    <!-- <div class="form-group">
-      <label>Name:</label>
-      <input type="text" />
-    </div>-->
+    <div class="form-group">
+      <label>avatar</label>
+      <input type="file" class="file-input" @change="onFileSelected" />
+    </div>
+    <button type="submit" class="profile-btn">save</button>
   </form>
 </template>
 
 <script>
+import formData from "form-data";
 export default {
   name: "ProfileForm",
   props: ["user"],
@@ -28,12 +29,28 @@ export default {
     return {
       name: "",
       displayName: "",
-      email: this.user.email
+      email: this.user.email,
+      seletedFile: null
     };
   },
   methods: {
     onSubmit() {
-      console.log(this);
+      let formData = new FormData();
+      formData.append("seletedFile", this.seletedFile);
+      // formData.append("email", this.email);
+      // formData.append("name", this.name);
+      // formData.append("displayName", this.displyName);
+
+      // const data = {
+      //   name: this.name,
+      //   displayName: this.displayName,
+      //   email: this.email,
+      //   seletedFile: this.seletedFile
+      // };
+      this.$store.dispatch("patchProfile", formData);
+    },
+    onFileSelected(event) {
+      this.seletedFile = event.target.files[0];
     }
   }
 };
@@ -45,7 +62,7 @@ export default {
   width: 60%;
 }
 .form-group {
-  margin: 2.5em auto;
+  margin: 1.5em auto;
   text-align: start;
   display: block;
   width: 15em;
@@ -65,9 +82,25 @@ export default {
 }
 .form-group input:focus {
   outline: none;
+  border-bottom: 3px solid blue;
 }
-.form-group input:not(:focus) {
+.form-group input::placeholder {
   font-style: italic;
   opacity: 0.6;
+}
+.form-group .file-input {
+  border: none;
+}
+.profile-btn {
+  padding: 0.5em 1.5em;
+  background-color: rgba(36, 47, 207, 0.6);
+  border-radius: 2px;
+  font-size: 1em;
+  transition: transform 300ms;
+}
+.profile-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color: white;
 }
 </style>

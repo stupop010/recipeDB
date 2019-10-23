@@ -25,7 +25,6 @@ export default {
     this.$store.watch(
       (state, getters) => getters.isAuth,
       (newValue, oldValue) => {
-        console.log(newValue, oldValue);
         if (newValue === true) {
           this.$store.dispatch("loadUser");
         }
