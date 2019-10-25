@@ -34,23 +34,30 @@ const router = new Router({
       // meta: { requiresAuth: true }
     },
     { path: "*", component: Page404 }
-  ]
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters.isAuth) {
-      next("/login");
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
     } else {
-      next();
-    }
-  } else if (to.matched.some(record => record.meta.isVistoring)) {
-    if (store.getters.isAuth) {
-      next({
-        path: "/login"
-      });
+      return { x: 0, y: 0 };
     }
   }
-  next();
 });
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (!store.getters.isAuth) {
+//       next("/login");
+//     } else {
+//       next();
+//     }
+//   } else if (to.matched.some(record => record.meta.isVistoring)) {
+//     if (store.getters.isAuth) {
+//       next({
+//         path: "/login"
+//       });
+//     }
+//   }
+//   next();
+// });
 export default router;

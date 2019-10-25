@@ -2,16 +2,16 @@
   <div class="auth-container">
     <form class="form" v-on:submit.prevent="onSubmit">
       <h2>Login</h2>
-      <div class="form-group">
-        <input type="email" placeholder="Email" v-model="email" />
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="Password" v-model="password" />
-      </div>
-      <button type="submit" class="btn">Login</button>
-      <div class="register">
+      <b-form-group>
+        <b-form-input v-model="email" type="email" required placeholder="Email"></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input v-model="password" type="password" required placeholder="Password"></b-form-input>
+      </b-form-group>
+      <b-button variant="primary" type="submit" class="mt-3">Login</b-button>
+      <div class="register m-4">
         <p>Not Register?</p>
-        <button type="button" class="btn" @click="register">Create New Account</button>
+        <b-button variant="dark" type="button" @click="register">Create New Account</b-button>
       </div>
     </form>
   </div>
@@ -69,31 +69,6 @@ export default {
   justify-content: space-between;
   width: 60%;
   margin: auto;
-  margin-bottom: 1em;
   font-size: 1.2em;
-  font-weight: 500;
-}
-.form-group > input {
-  width: 100%;
-  border-radius: 2px;
-  padding: 5px 8px;
-  font-size: 1em;
-}
-.btn {
-  padding: 0.2em 3em;
-  border: 1px solid black;
-  border-radius: 3px;
-  font-size: 1.3em;
-  background: rgba(63, 113, 252, 0.9);
-}
-.btn:hover {
-  cursor: pointer;
-}
-.register {
-  padding-top: 2em;
-}
-.register > button {
-  margin-top: 0.5em;
-  background: rgba(79, 248, 107, 0.9);
 }
 </style>

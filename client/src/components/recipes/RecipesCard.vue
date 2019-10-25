@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
-    <router-link :to="{name: 'recipe', params: {name: recipe.label,recipe}}">
+  <div class="card mt-1">
+    <b-nav-item :to="{name: 'recipe', params: {name: recipe.label,recipe}}">
       <div class="recipe-image" :style="{ backgroundImage: `url('${recipe.image}')` }"></div>
       <p>{{recipe.label}}</p>
-    </router-link>
+    </b-nav-item>
     <div class="data">
       <a>
         <span class="number">{{Math.floor(recipe.calories / recipe.yield)}}</span>

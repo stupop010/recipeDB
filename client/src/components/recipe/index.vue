@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <section class="container">
+    <section class="ml-4">
       <RecipeHero :recipe="item" />
       <div class="recipe-info">
         <Ingredients :recipe="item" />

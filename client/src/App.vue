@@ -55,7 +55,9 @@ export default {
 li {
   list-style: none;
 }
-a,
+a {
+  color: black;
+}
 a:visited {
   text-decoration: none;
   color: black;

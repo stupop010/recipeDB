@@ -2,8 +2,8 @@
   <div class="list-container">
     <div class="list">
       <span>
-        <button v-if="recipe.sub" @click="setShow" class="icon" :class="{rotate: show}">
-          <font-awesome-icon icon="angle-right" size="2x" />
+        <button v-if="recipe.sub" @click="setShow" class="icon mr-1" :class="{rotate: show}">
+          <font-awesome-icon icon="angle-right" size="1x" />
         </button>
         {{recipe.label}}
       </span>
@@ -57,7 +57,11 @@ export default {
 }
 .icon {
   border: none;
+  background: transparent;
   transition: transform 300ms;
+  outline: none;
+}
+.icon:focus {
   outline: none;
 }
 .icon:hover {

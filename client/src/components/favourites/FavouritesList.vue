@@ -5,7 +5,7 @@
       :to="{name: 'recipe', params:{name: favourite.label, shouldFetch: true, uri:favourite.uri}}"
     >{{favourite.label}}</router-link>
     <button class="del-btn" @click="deleteItem">
-      <font-awesome-icon icon="times" size="2x" />
+      <font-awesome-icon icon="times" size="1x" />
     </button>
   </div>
 </template>

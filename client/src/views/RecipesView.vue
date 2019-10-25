@@ -26,29 +26,31 @@ export default {
   },
   data() {
     return {
-      dataTo: 20
+      dataTo: 20,
+      bottom: false
     };
   },
   methods: {
+    bottomVisible() {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight;
+      return bottomOfPage || pageHeight < visible;
+    },
     handleScroll() {
-      window.onscroll = () => {
-        let bottomOfWindow =
-          Math.max(
-            window.pageYOffset,
-            document.documentElement.scrollTop,
-            document.body.scrollTop
-          ) +
-            window.innerHeight ===
-          document.documentElement.offsetHeight;
-
-        if (bottomOfWindow) {
-          this.dataTo += 20;
-          this.$store.dispatch("fetchRecipes", {
-            search: this.$route.params.id,
-            searchTo: this.dataTo
-          });
-        }
-      };
+      this.bottom = this.bottomVisible();
+    }
+  },
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.dataTo += 20;
+        this.$store.dispatch("fetchRecipes", {
+          search: this.$route.params.id,
+          searchTo: this.dataTo
+        });
+      }
     }
   },
   computed: {
@@ -59,10 +61,10 @@ export default {
       return this.$store.getters.allRecipes;
     }
   },
-  mounted() {
+  created() {
     window.addEventListener("scroll", this.handleScroll);
   },
-  beforeDestroy() {
+  beforeDestory() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 };

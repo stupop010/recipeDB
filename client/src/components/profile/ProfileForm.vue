@@ -1,22 +1,29 @@
 <template>
   <form class="profile-form" v-on:submit.prevent="onSubmit">
-    <div class="form-group">
-      <label>name</label>
-      <input type="text" placeholder="e.g John Doe" />
-    </div>
-    <div class="form-group">
-      <label>display name</label>
-      <input type="text" placeholder="e.g JohnDoe12" />
-    </div>
-    <div class="form-group">
-      <label>email</label>
-      <input type="email" :placeholder="user.email" :v-model="email" />
-    </div>
-    <div class="form-group">
-      <label>avatar</label>
-      <input type="file" class="file-input" @change="onFileSelected" />
-    </div>
+    <b-form-group label="Name" label-for="name-input">
+      <b-form-input id="name-input" type="text" placeholder="e.g John Doe" v-model="name" trim />
+    </b-form-group>
+    <b-form-group label="Display name" label-for="displayName-input">
+      <b-form-input
+        id="displayName-input"
+        type="text"
+        placeholder="e.g JohnDoe12"
+        v-model="displayName"
+        trim
+      />
+    </b-form-group>
+    <b-form-group label="Email" label-for="email-input">
+      <b-form-input id="email-input" type="email" :placeholder="user.email" v-model="email" />
+    </b-form-group>
+    <b-form-group label="Avatar" label-for="avatar-input">
+      <b-form-file @change="onFileSelected" class="mt-3 file-input" plain></b-form-file>
+      <div class="mt-3">
+        Selected file:
+        <span class="file-name">{{ seletedFile ? seletedFile.name : '' }}</span>
+      </div>
+    </b-form-group>
     <button type="submit" class="profile-btn">save</button>
+    <b-button variant="info">Info</b-button>
   </form>
 </template>
 
@@ -37,16 +44,9 @@ export default {
     onSubmit() {
       let formData = new FormData();
       formData.append("seletedFile", this.seletedFile);
-      // formData.append("email", this.email);
-      // formData.append("name", this.name);
-      // formData.append("displayName", this.displyName);
-
-      // const data = {
-      //   name: this.name,
-      //   displayName: this.displayName,
-      //   email: this.email,
-      //   seletedFile: this.seletedFile
-      // };
+      formData.append("email", this.email);
+      formData.append("name", this.name);
+      formData.append("displayName", this.displayName);
       this.$store.dispatch("patchProfile", formData);
     },
     onFileSelected(event) {
@@ -74,22 +74,15 @@ export default {
 }
 .form-group input {
   height: 1.5em;
-  /* border: 1px solid black; */
   border: none;
+  border-radius: 0;
   border-bottom: 2px solid blue;
   font-size: 1em;
-  padding: 0;
-}
-.form-group input:focus {
-  outline: none;
-  border-bottom: 3px solid blue;
+  padding: 0.1em;
 }
 .form-group input::placeholder {
   font-style: italic;
   opacity: 0.6;
-}
-.form-group .file-input {
-  border: none;
 }
 .profile-btn {
   padding: 0.5em 1.5em;
@@ -102,5 +95,11 @@ export default {
   cursor: pointer;
   transform: scale(1.1);
   color: white;
+}
+.form-group .file-input {
+  border: none;
+}
+.file-name {
+  font-size: 0.8em;
 }
 </style>

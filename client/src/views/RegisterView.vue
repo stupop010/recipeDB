@@ -3,19 +3,19 @@
     <form class="form" v-on:submit.prevent="onSubmit">
       <h2>Register</h2>
       <div v-if="error" class="error">{{error}}</div>
-      <div class="form-group">
-        <input type="email" placeholder="email" v-model="email" />
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="Password" v-model="password" />
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="Confirm Password" v-model="password2" />
-      </div>
-      <button type="submit" class="btn">Create Account</button>
-      <div class="register">
+      <b-form-group>
+        <b-form-input type="email" placeholder="email" v-model="email" required />
+      </b-form-group>
+      <b-form-group>
+        <b-form-input type="password" placeholder="Password" v-model="password" required />
+      </b-form-group>
+      <b-form-group>
+        <b-form-input type="password" placeholder="Confirm Password" v-model="password2" required />
+      </b-form-group>
+      <b-button type="submit" variant="primary" class="mt-3">Create Account</b-button>
+      <div class="mt-4">
         <p>Already Register?</p>
-        <button type="button" class="btn" @click="login">Log In</button>
+        <b-button type="button" variant="dark" class="mt-1" @click="login">Log In</b-button>
       </div>
     </form>
   </div>
@@ -67,9 +67,5 @@ export default {
   border: 1px solid white;
   border-radius: 4px;
   width: 40%;
-}
-.register > button {
-  margin-top: 0.5em;
-  background: rgba(79, 248, 107, 0.9);
 }
 </style>

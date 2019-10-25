@@ -1,28 +1,24 @@
 <template>
   <header>
-    <div class="header-container" @submit.prevent="onSubmit">
-      <router-link to="/">
-        <h1 @click="clearData">Recipe DB</h1>
-      </router-link>
-      <form>
+    <b-navbar toggleable="lg" type="light" variant="info" class="nav">
+      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <form v-on:submit.prevent="onSubmit">
         <div class="search">
           <input type="text" v-model="search" />
           <button type="button" class="clear-btn" @click="clearData">clear</button>
           <button type="submit" class="search-btn">search</button>
         </div>
       </form>
-      <div>
-        <ul>
-          <router-link to="/login">login</router-link>
-          <router-link to="/register">resigter</router-link>
-          <router-link to="/profile">profile</router-link>
-        </ul>
-        <p v-if="isAuth">
-          hello
-          <button @click="signOut">Logout</button>
-        </p>
-      </div>
-    </div>
+      <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-text-collapse" class="clear-flex" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/login">login</b-nav-item>
+          <b-nav-item to="/register">register</b-nav-item>
+          <b-nav-item to="/profile">login</b-nav-item>
+          <b-nav-item v-if="isAuth" to="/profile">login</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </header>
 </template>
 
@@ -37,6 +33,7 @@ export default {
   props: ["user"],
   methods: {
     onSubmit() {
+      console.log(this.search);
       this.$store.dispatch("fetchRecipes", {
         search: this.search,
         searchTo: 20
@@ -59,18 +56,17 @@ export default {
 </script>
 
 <style scoped>
-header {
+.nav {
+  display: flex;
+  justify-content: space-between;
   background: linear-gradient(to bottom, #f7f7f7 0%, #e3e3e3 100%);
+  box-shadow: 0 1px rgba(107, 106, 106, 0.8);
 }
+
 h1 {
   margin: 0;
 }
-.header-container {
-  display: flex;
-  justify-content: space-around;
-  padding: 1em 0;
-  box-shadow: 0 1px rgba(107, 106, 106, 0.8);
-}
+
 form {
   height: 38px;
 }
@@ -118,5 +114,8 @@ form {
 }
 button {
   padding: 1px 7px 2px;
+}
+.clear-flex {
+  flex-grow: 0;
 }
 </style>

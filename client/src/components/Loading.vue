@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showing" class="container">
+  <div v-if="showing" class="loading-container">
     <div class="loader-wrapper">
       <div class="wrapper">
         Loading...
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.loading-container {
   height: 100vh;
   width: 100vw;
   background-color: rgba(255, 255, 255, 0.75);

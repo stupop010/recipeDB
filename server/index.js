@@ -4,6 +4,7 @@ const cors = require("cors");
 const sequelize = require("./utils/database");
 const User = require("./models/user");
 const UserFavourtieItem = require("./models/userFavouriteItem");
+const Avatar = require("./models/avatar");
 
 const app = express();
 
