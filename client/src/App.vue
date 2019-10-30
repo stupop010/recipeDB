@@ -56,7 +56,7 @@ li {
   list-style: none;
 }
 a {
-  color: black;
+  color: black !important;
 }
 a:visited {
   text-decoration: none;

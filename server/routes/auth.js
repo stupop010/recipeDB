@@ -15,7 +15,7 @@ const isAuth = require("../middleware/isAuth");
 router.get("/", isAuth, async (req, res) => {
   try {
     const user = await User.findOne({
-      attributes: ["id", "email"],
+      attributes: ["id", "email", "filename"],
       where: { id: req.user.id }
     });
     res.json(user.dataValues);

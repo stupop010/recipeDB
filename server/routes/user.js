@@ -2,11 +2,29 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
 
 const router = express.Router();
 
 const User = require("../models/user");
 const keys = require("../config/keys");
+
+const isAuth = require("../middleware/isAuth");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(
+      null,
+      file.originalname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // @route    POST api/users
 // @desc     Register user
@@ -65,5 +83,53 @@ router.post(
     }
   }
 );
+
+router.patch("/", isAuth, upload.single("seletedFile"), async (req, res) => {
+  try {
+    const { name, email, displayName } = req.body;
+
+    const { id } = req.user;
+
+    if (name) await User.update({ name }, { where: { id } });
+    if (email) await User.update({ email }, { where: { id } });
+    if (displayName) await User.update({ displayName }, { where: { id } });
+    if (req.file) {
+      const {
+        fieldname,
+        originalname,
+        encoding,
+        mimetype,
+        destination,
+        filename,
+        path,
+        size
+      } = req.file;
+      await User.update(
+        {
+          fieldname,
+          originalname,
+          encoding,
+          mimetype,
+          destination,
+          filename,
+          path,
+          size
+        },
+        {
+          where: {
+            id
+          }
+        }
+      );
+    }
+    const user = await User.findOne({
+      attributes: ["id", "email", "filename", "name", "displayName"],
+      where: { id }
+    });
+    res.json(user.dataValues);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = router;

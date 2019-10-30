@@ -37,11 +37,12 @@ export default {
     }
   },
   created() {
-    console.log(this);
+    console.log(this, "created");
     this.fetchRecipe();
   },
   watch: {
     $route() {
+      console.log(this, "watch");
       this.fetchRecipe();
     }
   }

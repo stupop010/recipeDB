@@ -9,6 +9,12 @@ const User = sequelize.define("user", {
     allowNull: false,
     primaryKey: true
   },
+  name: {
+    type: Sequelize.STRING
+  },
+  displayName: {
+    type: Sequelize.STRING
+  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -17,6 +23,30 @@ const User = sequelize.define("user", {
   password: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  fieldname: {
+    type: Sequelize.STRING
+  },
+  originalname: {
+    type: Sequelize.STRING
+  },
+  encoding: {
+    type: Sequelize.STRING
+  },
+  mimetype: {
+    type: Sequelize.STRING
+  },
+  destination: {
+    type: Sequelize.STRING
+  },
+  filename: {
+    type: Sequelize.STRING
+  },
+  path: {
+    type: Sequelize.STRING
+  },
+  size: {
+    type: Sequelize.INTEGER
   }
 });
 

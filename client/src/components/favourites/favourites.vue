@@ -18,6 +18,7 @@ export default {
   },
   computed: {
     favourites() {
+      console.log(this);
       return this.$store.getters.fetchFavourites;
     }
   },

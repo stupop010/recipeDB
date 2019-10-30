@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Profile />
+    <Profile :user="user" />
   </Layout>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   components: {
     Profile,
     Layout
+  },
+  computed: {
+    user() {
+      return this.$store.getters.fetchUser;
+    }
   }
 };
 </script>

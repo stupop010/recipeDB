@@ -22,16 +22,19 @@
         <span class="file-name">{{ seletedFile ? seletedFile.name : '' }}</span>
       </div>
     </b-form-group>
-    <button type="submit" class="profile-btn">save</button>
-    <b-button variant="info">Info</b-button>
+    <div class="mb-4">
+      <b-button type="submit" variant="primary" class="mx-3 px-4">Save</b-button>
+      <b-button variant="info" class="px-4">Info</b-button>
+    </div>
   </form>
 </template>
 
 <script>
+import { setFormData } from "../../utils";
 import formData from "form-data";
 export default {
   name: "ProfileForm",
-  props: ["user"],
+  props: ["user", "updateAvatar"],
   data() {
     return {
       name: "",
@@ -41,16 +44,18 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      let formData = new FormData();
-      formData.append("seletedFile", this.seletedFile);
-      formData.append("email", this.email);
-      formData.append("name", this.name);
-      formData.append("displayName", this.displayName);
+    onSubmit: function() {
+      const formData = setFormData(
+        this.seletedFile,
+        this.email,
+        this.name,
+        this.displayName
+      );
       this.$store.dispatch("patchProfile", formData);
     },
     onFileSelected(event) {
       this.seletedFile = event.target.files[0];
+      this.updateAvatar(this.seletedFile);
     }
   }
 };
@@ -98,6 +103,7 @@ export default {
 }
 .form-group .file-input {
   border: none;
+  height: 2em;
 }
 .file-name {
   font-size: 0.8em;

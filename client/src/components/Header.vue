@@ -12,10 +12,10 @@
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
       <b-collapse id="nav-text-collapse" class="clear-flex" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/login">login</b-nav-item>
-          <b-nav-item to="/register">register</b-nav-item>
-          <b-nav-item to="/profile">login</b-nav-item>
-          <b-nav-item v-if="isAuth" to="/profile">login</b-nav-item>
+          <b-nav-item v-if="!isAuth" to="/login">login</b-nav-item>
+          <b-nav-item v-if="!isAuth" to="/register">register</b-nav-item>
+          <b-nav-item v-if="isAuth" @click="signOut">logout</b-nav-item>
+          <b-nav-item v-if="isAuth" to="/profile">profile</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -33,7 +33,6 @@ export default {
   props: ["user"],
   methods: {
     onSubmit() {
-      console.log(this.search);
       this.$store.dispatch("fetchRecipes", {
         search: this.search,
         searchTo: 20

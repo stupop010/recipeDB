@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <Avatar />
+    <Avatar :user="user" />
     <ProfileForm :user="user" />
   </div>
 </template>
@@ -17,11 +17,11 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.fetchProfileUser;
+      return this.$store.getters.fetchUser;
     }
   },
   created() {
-    this.$store.dispatch("fetchProfileUser");
+    return this.$store.dispatch("fetchUser");
   }
 };
 </script>

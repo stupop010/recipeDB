@@ -4,7 +4,6 @@ const cors = require("cors");
 const sequelize = require("./utils/database");
 const User = require("./models/user");
 const UserFavourtieItem = require("./models/userFavouriteItem");
-const Avatar = require("./models/avatar");
 
 const app = express();
 
@@ -17,7 +16,7 @@ app.use("/api/user", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/data", require("./routes/data"));
 app.use("/api/favourites", require("./routes/favourites"));
-app.use("/api/profile", require("./routes/profile"));
+app.use("/api/picture", require("./routes/pictures"));
 
 const PORT = process.env.PORT || 5080;
 
