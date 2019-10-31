@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <section class="ml-4">
+    <section class="con">
       <RecipeHero :recipe="item" />
       <div class="recipe-info">
         <Ingredients :recipe="item" />
@@ -39,8 +39,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-left: 2em;
+.con {
+  margin: auto;
 }
 .recipe-info {
   display: flex;

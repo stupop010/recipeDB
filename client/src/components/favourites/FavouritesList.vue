@@ -25,12 +25,15 @@ export default {
 <style scoped>
 .fav-items {
   margin: 0.5em 0;
-  line-height: 1.6em;
-  font-size: 1.1em;
+  font-size: 0.8em;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
   padding: 0 0.5em;
+  text-align: start;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  box-shadow: 1px 1px #666;
 }
 .fav-items:hover {
   text-decoration: underline;

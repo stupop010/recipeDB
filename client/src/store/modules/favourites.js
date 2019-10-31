@@ -35,6 +35,7 @@ const actions = {
       const res = await axios.get("/api/data/favourite", {
         params: { data }
       });
+      console.log(res.data);
       commit("setRecipe", res.data);
       commit("setLoading", false);
     } catch (err) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-container">
+  <div class="profile-container shadow p-3 mb-5 bg-white rounded">
     <Avatar :user="user" />
     <ProfileForm :user="user" />
   </div>
@@ -11,6 +11,11 @@ import ProfileForm from "./ProfileForm";
 
 export default {
   name: "Profile",
+  data() {
+    return {
+      img: this.user.filename
+    };
+  },
   components: {
     Avatar,
     ProfileForm
@@ -21,6 +26,7 @@ export default {
     }
   },
   created() {
+    console.log(this);
     return this.$store.dispatch("fetchUser");
   }
 };
@@ -28,9 +34,8 @@ export default {
 
 <style scoped>
 .profile-container {
-  border: 1px solid black;
-  width: 50%;
-  margin: 0 3em;
+  border: 1px solid rgb(168, 166, 166);
+  margin: 0 15em;
   min-height: 20em;
   display: flex;
 }

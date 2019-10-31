@@ -63,8 +63,7 @@ export default {
 
 <style scoped>
 .profile-form {
-  border: 1px solid black;
-  width: 60%;
+  width: 20em;
 }
 .form-group {
   margin: 1.5em auto;

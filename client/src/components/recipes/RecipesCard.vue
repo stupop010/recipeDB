@@ -36,6 +36,9 @@ export default {
   border: 1px solid rgba(163, 161, 161, 0.9);
   border-radius: 1px;
 }
+.card > li > a {
+  padding: 0;
+}
 .card > a > p {
   padding-top: 0.5em;
   height: 2em;
@@ -56,10 +59,6 @@ export default {
 .data {
   border-top: 1px solid rgba(163, 161, 161, 0.9);
   border-bottom: 1px solid rgba(163, 161, 161, 0.9);
-  width: 12em;
-  margin: 2em auto 0 auto;
-  height: 2em;
-  padding-top: 0.3em;
 }
 .data > a {
   margin: 0.2em;

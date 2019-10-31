@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img v-if="img" :src="img" />
+    <img v-if="img" :src="img" class="border" />
   </div>
 </template>
 
@@ -18,8 +18,7 @@ export default {
 
 <style scoped>
 div {
-  border: 1px solid black;
-  width: 40%;
+  width: 20em;
 }
 div img {
   height: 13em;

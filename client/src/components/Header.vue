@@ -1,7 +1,7 @@
 <template>
   <header>
     <b-navbar toggleable="lg" type="light" variant="info" class="nav">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand href="/">RecipeDB</b-navbar-brand>
       <form v-on:submit.prevent="onSubmit">
         <div class="search">
           <input type="text" v-model="search" />
@@ -38,6 +38,7 @@ export default {
         searchTo: 20
       });
       this.$router.push({ path: `/search/${this.search}` });
+      this.clearData();
     },
     signOut() {
       this.$store.dispatch("logOut");
@@ -62,12 +63,12 @@ export default {
   box-shadow: 0 1px rgba(107, 106, 106, 0.8);
 }
 
-h1 {
-  margin: 0;
-}
-
 form {
   height: 38px;
+}
+.navbar-brand {
+  font-size: 2em;
+  font-weight: bold;
 }
 .search {
   height: 100%;
@@ -116,5 +117,8 @@ button {
 }
 .clear-flex {
   flex-grow: 0;
+}
+#nav-text-collapse a {
+  text-transform: capitalize;
 }
 </style>

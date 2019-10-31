@@ -56,7 +56,7 @@ export default {
   text-decoration: underline;
 }
 .recipe-btn {
-  margin: 6em;
+  margin: 1em;
   background: linear-gradient(
     to bottom,
     rgba(44, 243, 18, 0.8) 0%,

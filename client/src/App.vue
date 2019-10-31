@@ -82,6 +82,6 @@ a:visited {
 }
 
 main {
-  padding: 2em 0.5em;
+  padding: 3em 0.5em;
 }
 </style>

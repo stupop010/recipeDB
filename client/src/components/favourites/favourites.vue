@@ -18,7 +18,6 @@ export default {
   },
   computed: {
     favourites() {
-      console.log(this);
       return this.$store.getters.fetchFavourites;
     }
   },
@@ -30,10 +29,7 @@ export default {
 
 <style scoped>
 .fav-container {
-  width: 15em;
-  border: 1px solid black;
-  border-radius: 3px;
-  background: rgba(11, 11, 11, 0.2);
+  width: 20em;
   height: 30em;
 }
 .fav-container > h3 {

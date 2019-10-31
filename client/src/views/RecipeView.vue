@@ -13,7 +13,7 @@ export default {
   name: "RecipeView",
   data() {
     return {
-      recipe: this.$route.params.recipe || null
+      recipe: this.$route.params.recipe
     };
   },
   components: {
@@ -25,6 +25,7 @@ export default {
       const { shouldFetch, uri } = this.$route.params;
       if (shouldFetch) {
         this.$store.dispatch("fetchFavouriteRecipe", uri);
+        this.recipe = "";
       }
     }
   },
@@ -37,12 +38,10 @@ export default {
     }
   },
   created() {
-    console.log(this, "created");
     this.fetchRecipe();
   },
   watch: {
     $route() {
-      console.log(this, "watch");
       this.fetchRecipe();
     }
   }
