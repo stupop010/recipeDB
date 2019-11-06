@@ -39,13 +39,10 @@ export default {
 .card > li > a {
   padding: 0;
 }
-.card > a > p {
+.card > li > a > p {
   padding-top: 0.5em;
-  height: 2em;
 }
-.card > a > p:hover {
-  color: green;
-}
+
 .card > h1 {
   font-size: 0.9em;
   opacity: 1;

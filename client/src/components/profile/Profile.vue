@@ -26,7 +26,6 @@ export default {
     }
   },
   created() {
-    console.log(this);
     return this.$store.dispatch("fetchUser");
   }
 };
@@ -35,7 +34,7 @@ export default {
 <style scoped>
 .profile-container {
   border: 1px solid rgb(168, 166, 166);
-  margin: 0 15em;
+  margin: 0 5em;
   min-height: 20em;
   display: flex;
 }

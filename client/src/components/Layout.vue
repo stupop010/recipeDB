@@ -23,5 +23,6 @@ export default {
 <style scoped>
 .lay-container {
   display: flex;
+  padding-top: 7em;
 }
 </style>

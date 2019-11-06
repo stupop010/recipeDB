@@ -80,8 +80,4 @@ a:visited {
 .fade-leave-active {
   opacity: 0;
 }
-
-main {
-  padding: 3em 0.5em;
-}
 </style>

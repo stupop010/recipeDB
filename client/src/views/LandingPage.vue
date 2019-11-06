@@ -1,53 +1,52 @@
 <template>
   <section>
-    <div id="slider">
-      <img :src="currentImg" />
-      <a class="prev" @click="prev" href="#">&#10094; Previous</a>
-      <a class="next" @click="next" href="#">&#10095; Next</a>
+    <div class="landing">
+      <div class="content">
+        <Search />
+        <p class="showcase-title">Search through thousands of recipes</p>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import Search from "../components/search/Search";
 export default {
   name: "LandingPage",
-  data() {
-    return {
-      images: [
-        "https://www.edamam.com/web-img/adf/adf0d1e50d6ab82c373984230682fb3e.jpg",
-        "https://www.edamam.com/web-img/07a/07a25209e7beea252407d06fb62dc38c.jpg"
-      ],
-      timer: null,
-      currentIndex: 0
-    };
-  },
-  mounted: function() {
-    this.startSlide();
-  },
-
-  methods: {
-    startSlide: function() {
-      this.timer = setInterval(this.next, 4000);
-    },
-    next: function() {
-      this.currentIndex += 1;
-    },
-    prev: function() {
-      this.currentIndex -= 1;
-    }
-  },
-
-  computed: {
-    currentImg() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
-    }
+  components: {
+    Search
   }
 };
 </script>
 
 <style scoped>
-#slider img {
+section {
+  position: relative;
+}
+.landing {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(rgba(85, 85, 85, 0.2), rgba(138, 138, 137, 0.2)),
+    url("/landing.jpg") center no-repeat;
+  background-size: cover;
+}
+.search {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  color: white;
   width: 30em;
-  box-shadow: 2px 2px #666;
+  background: white;
+}
+.showcase-title {
+  color: white;
+  font-weight: bolder;
+  font-size: 3em;
+  margin-top: 2em;
+  text-shadow: 2px 2px black;
+  margin-bottom: 0;
+}
+.content {
+  padding-top: 18em;
 }
 </style>

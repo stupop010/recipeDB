@@ -73,10 +73,10 @@ export default {
 <style>
 .width {
   width: 80%;
+  margin: 0 auto;
 }
 .recipe-container {
   width: 100%;
-  margin: 0 3em;
   display: flex;
   flex-wrap: wrap;
 }
