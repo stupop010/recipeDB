@@ -69,4 +69,11 @@ export default {
 .recipe-btn:hover {
   cursor: pointer;
 }
+@media only screen and (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 </style>

@@ -29,6 +29,7 @@ section {
   background: linear-gradient(rgba(85, 85, 85, 0.2), rgba(138, 138, 137, 0.2)),
     url("/landing.jpg") center no-repeat;
   background-size: cover;
+  padding-bottom: 10em;
 }
 .search {
   position: absolute;
@@ -48,5 +49,13 @@ section {
 }
 .content {
   padding-top: 18em;
+}
+@media screen and (max-width: 600px) {
+  .showcase-title {
+    margin-top: 0.7em;
+  }
+  .content {
+    padding-top: 10em;
+  }
 }
 </style>

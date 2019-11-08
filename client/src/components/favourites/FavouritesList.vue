@@ -29,14 +29,16 @@ export default {
   font-weight: 500;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.5em;
+  padding: 0.5em 0.5em;
   text-align: start;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  box-shadow: 1px 1px #666;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
 }
 .fav-items:hover {
   text-decoration: underline;
+}
+.fav-items a {
+  padding-right: 0.5em;
 }
 .del-btn {
   margin-right: 0.5em;

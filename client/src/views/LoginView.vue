@@ -71,4 +71,10 @@ export default {
   margin: auto;
   font-size: 1.2em;
 }
+
+@media screen and (max-width: 500px) {
+  .form {
+    width: 90%;
+  }
+}
 </style>

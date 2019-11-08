@@ -56,4 +56,9 @@ export default {
   background: rgba(114, 111, 111, 0.2);
   border: 1px solid rgba(95, 93, 93, 0.2);
 }
+@media only screen and (max-width: 900px) {
+  .ingredients {
+    max-width: 45%;
+  }
+}
 </style>

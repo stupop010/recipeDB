@@ -55,7 +55,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: black;
-  opacity: 0.999;
+  opacity: 0.99;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -54,4 +54,15 @@ export default {
 .nutrition-container {
   width: 22em;
 }
+@media screen and (max-width: 900px) {
+  .nutrition-container {
+    max-width: 50%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .recipe-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 </style>

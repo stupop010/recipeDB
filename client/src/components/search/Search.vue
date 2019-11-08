@@ -34,9 +34,6 @@ export default {
 </script>
 
 <style scoped>
-/* form {
-  padding-top: 18em;
-} */
 .search {
   height: 3.5em;
   width: 30em;
@@ -76,5 +73,10 @@ export default {
   background: rgba(107, 106, 106, 0.8);
   color: white;
   outline: none;
+}
+@media screen and (max-width: 400px) {
+  .search {
+    width: 90%;
+  }
 }
 </style>

@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .fav-container {
-  width: 20em;
+  max-width: 20%;
   height: 30em;
 }
 .fav-container > h3 {
@@ -37,5 +37,10 @@ export default {
   font-size: 1.6em;
   font-weight: 900;
   text-decoration: underline;
+}
+@media screen and (max-width: 992px) {
+  .fav-container {
+    display: none;
+  }
 }
 </style>

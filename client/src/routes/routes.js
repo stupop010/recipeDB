@@ -2,7 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import RecipeView from "../views/RecipeView.vue";
-import HomeView from "../views/HomeView.vue";
 import RecipesView from "../views/RecipesView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView";

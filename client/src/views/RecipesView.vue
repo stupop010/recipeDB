@@ -72,12 +72,19 @@ export default {
 
 <style>
 .width {
-  width: 80%;
-  margin: 0 auto;
+  max-width: 80%;
 }
 .recipe-container {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+.recipe {
+  margin: 0.3em auto;
+}
+@media screen and (max-width: 992px) {
+  .width {
+    max-width: 90%;
+    margin: auto;
+  }
 }
 </style>
