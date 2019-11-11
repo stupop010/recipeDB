@@ -2,7 +2,6 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
 const path = require("path");
 
 const router = express.Router();
@@ -12,19 +11,7 @@ const keys = require("../config/keys");
 
 const isAuth = require("../middleware/isAuth");
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function(req, file, cb) {
-    cb(
-      null,
-      file.originalname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  }
-});
-
-const upload = multer({ storage: storage });
+const upload = require("../middleware/multer");
 
 // @route    POST api/users
 // @desc     Register user

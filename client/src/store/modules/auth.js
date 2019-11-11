@@ -10,8 +10,7 @@ const state = {
 
 const getters = {
   isAuth: state => state.isAuth,
-  fetchUser: state => state.user,
-  fetchImg: state => state.user.filename
+  fetchUser: state => state.user
 };
 
 const actions = {
@@ -23,7 +22,6 @@ const actions = {
       const res = await axios.get("/api/auth");
       commit("setUser", res.data);
       commit("setAuth");
-      console.log(res);
     } catch (err) {
       console.error(err);
     }
@@ -34,19 +32,6 @@ const actions = {
       setLocalStorage("token", res.data.token);
       commit("setToken", res.data.token);
       commit("setAuth");
-      router.push("/");
-    } catch (err) {
-      console.error(err);
-    }
-  },
-  async patchProfile({ commit }, data) {
-    try {
-      const res = await axios.patch("/api/user", data, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
-      commit("setUser", res.data);
       router.push("/");
     } catch (err) {
       console.error(err);

@@ -31,10 +31,10 @@
 
 <script>
 import { setFormData } from "../../utils";
-import formData from "form-data";
+import FormData from "form-data";
 export default {
   name: "ProfileForm",
-  props: ["user", "updateAvatar"],
+  props: ["user"],
   data() {
     return {
       name: "",
@@ -55,7 +55,9 @@ export default {
     },
     onFileSelected(event) {
       this.seletedFile = event.target.files[0];
-      this.updateAvatar(this.seletedFile);
+      const formData = new FormData();
+      formData.append("seletedFile", this.seletedFile);
+      this.$store.dispatch("showAvatarPic", formData);
     }
   }
 };

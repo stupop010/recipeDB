@@ -76,4 +76,9 @@ export default {
     align-items: center;
   }
 }
+@media only screen and (max-width: 500px) {
+  .hero-holder {
+    width: 100%;
+  }
+}
 </style>

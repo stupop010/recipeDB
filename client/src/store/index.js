@@ -4,6 +4,7 @@ import recipes from "./modules/recipes";
 import auth from "./modules/auth";
 import favourties from "./modules/favourites";
 import error from "./modules/error";
+import profile from "./modules/profile";
 
 // Load Vuex
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     recipes,
     auth,
     favourties,
-    error
+    error,
+    profile
   }
 });

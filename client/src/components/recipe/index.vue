@@ -42,6 +42,7 @@ export default {
 .con {
   margin: auto;
 }
+
 .recipe-info {
   display: flex;
   border: 1px solid rgba(145, 143, 143, 0.2);
@@ -51,18 +52,20 @@ export default {
 .recipe-info > div {
   padding: 0 2em;
 }
+
 .nutrition-container {
   width: 22em;
 }
-@media screen and (max-width: 900px) {
-  .nutrition-container {
-    max-width: 50%;
-  }
-}
+
 @media screen and (max-width: 750px) {
   .recipe-info {
     flex-direction: column;
     align-items: center;
+  }
+}
+@media screen and (max-width: 750px) {
+  .con {
+    width: 100vw;
   }
 }
 </style>

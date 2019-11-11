@@ -74,4 +74,10 @@ export default {
   font-size: 0.8em;
   opacity: 0.6;
 }
+@media only screen and (max-width: 550px) {
+  .card {
+    width: 17em;
+    margin: auto;
+  }
+}
 </style>

@@ -74,7 +74,7 @@ export default {
   color: white;
   outline: none;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 550px) {
   .search {
     width: 90%;
   }

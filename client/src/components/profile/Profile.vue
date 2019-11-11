@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container shadow p-3 mb-5 bg-white rounded">
-    <Avatar :user="user" />
+    <Avatar :user="user" :img="img" />
     <ProfileForm :user="user" />
   </div>
 </template>
@@ -11,22 +11,28 @@ import ProfileForm from "./ProfileForm";
 
 export default {
   name: "Profile",
-  data() {
-    return {
-      img: this.user.filename
-    };
-  },
   components: {
     Avatar,
     ProfileForm
   },
+  data() {
+    return {
+      img: ""
+    };
+  },
   computed: {
     user() {
-      return this.$store.getters.fetchUser;
+      return this.$store.getters.fetchProfileData;
+    }
+  },
+  methods: {
+    setImg() {
+      console.log(this);
     }
   },
   created() {
-    return this.$store.dispatch("fetchUser");
+    this.$store.dispatch("fetchProfileData");
+    this.setImg();
   }
 };
 </script>

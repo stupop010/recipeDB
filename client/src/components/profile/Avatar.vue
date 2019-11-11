@@ -1,17 +1,26 @@
 <template>
   <div>
-    <img v-if="img" :src="img" class="border" />
+    <img v-if="picture" :src="picture" class="border" />
   </div>
 </template>
 
 <script>
 export default {
   name: "Avatar",
-  props: ["user"],
-  data() {
-    return {
-      img: "/api/picture/" + this.user.filename
-    };
+  props: ["user", "img"],
+  // data() {
+  //   return {
+  //     img: "/api/picture/" + this.user.filename
+  //   };
+  // },
+  computed: {
+    picture() {
+      const filePath = "/api/picture/";
+      return this.img ? filePath + this.img : filePath + this.user.filename;
+    }
+  },
+  created() {
+    console.log(this);
   }
 };
 </script>
