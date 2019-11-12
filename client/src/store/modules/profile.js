@@ -4,12 +4,14 @@ import { setAuthHeaders } from "../../utils";
 
 const state = {
   profileData: [],
-  avatarPic: ""
+  avatarPic: "",
+  loading: false
 };
 
 const getters = {
   fetchProfileData: state => state.profileData,
-  fetchAvatarPic: state => state.avatarPic
+  fetchAvatarPic: state => state.avatarPic,
+  AvatarPicLoading: state => state.loading
 };
 
 const actions = {
@@ -28,12 +30,14 @@ const actions = {
   },
   async showAvatarPic({ commit }, data) {
     try {
+      commit("setLoading", true);
       const res = await axios.post("/api/picture", data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       });
-      console.log(res.data.filename);
+      commit("setAvatarPic", res.data.filename);
+      commit("setLoading", false);
     } catch (err) {
       console.error(err);
     }
@@ -53,7 +57,8 @@ const actions = {
 
 const mutations = {
   setProfileData: (state, data) => (state.profileData = data),
-  setAvatarPic: (state, picture) => (state.avatarPic = picture)
+  setAvatarPic: (state, picture) => (state.avatarPic = picture),
+  setLoading: (state, loading) => (state.loading = loading)
 };
 
 export default {

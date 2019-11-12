@@ -11,7 +11,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://localhost:5080",
+        target: "https://hidden-cove-79704.herokuapp.com",
         ws: true,
         changeOrigin: true
       }

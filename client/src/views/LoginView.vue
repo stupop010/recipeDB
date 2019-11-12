@@ -76,5 +76,8 @@ export default {
   .form {
     width: 90%;
   }
+  .form-group {
+    width: 90%;
+  }
 }
 </style>

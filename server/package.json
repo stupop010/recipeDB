@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/stupop010/recipeDB/issues"
   },
+  "engines": {
+    "node": "12.13.x"
+  },
   "homepage": "https://github.com/stupop010/recipeDB#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",

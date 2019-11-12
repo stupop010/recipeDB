@@ -1,5 +1,5 @@
-module.exports = {
-  jwt: "jhdsgfbSDFGEWDgfdsdSDF",
-  app_id: "893fb8f6",
-  app_key: "a7e67afa2bbbb7e691fac00c8b0145d6"
-};
+if (process.env.NODE_ENV === "production") {
+  console.log(process.env);
+} else {
+  module.exports = require("./dev");
+}

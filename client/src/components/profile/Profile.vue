@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container shadow p-3 mb-5 bg-white rounded">
-    <Avatar :user="user" :img="img" />
+    <Avatar :user="user" :img="img" :isLoading="loading" />
     <ProfileForm :user="user" />
   </div>
 </template>
@@ -23,16 +23,19 @@ export default {
   computed: {
     user() {
       return this.$store.getters.fetchProfileData;
-    }
-  },
-  methods: {
-    setImg() {
-      console.log(this);
+    },
+    loading() {
+      return this.$store.getters.AvatarPicLoading;
     }
   },
   created() {
     this.$store.dispatch("fetchProfileData");
-    this.setImg();
+    this.$store.watch(
+      (state, getters) => getters.fetchAvatarPic,
+      (newValue, oldValue) => {
+        this.img = newValue;
+      }
+    );
   }
 };
 </script>
@@ -43,5 +46,14 @@ export default {
   margin: 0 5em;
   min-height: 20em;
   display: flex;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-container {
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: auto;
+  }
 }
 </style>
